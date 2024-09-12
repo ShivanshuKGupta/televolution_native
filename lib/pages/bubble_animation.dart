@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:math' as math;
 
 import 'package:jaspr/jaspr.dart';
@@ -5,13 +6,11 @@ import 'package:jaspr/jaspr.dart';
 class Bubble {
   static const speedMultiplier = 2;
   static final List<Color> colors = const [
-    Color.rgba(255, 232, 116, 53),
-    Color.value(0xFF061556),
-    Color.value(0xFF0073BB),
     Colors.blue,
+    Colors.blueViolet,
+    Colors.darkBlue,
     Colors.skyBlue,
-    Color.value(0xFF2B6FC0),
-    Color.value(0xFF131C49),
+    Colors.orange,
   ];
   double x, y;
   Color color;
@@ -59,11 +58,13 @@ class BubbleAnimationState extends State<BubbleAnimation> {
 
   @override
   void initState() {
-    for (int i = 0; i < 10; ++i) {
+    final windowHeight = window.innerHeight?.toDouble() ?? 100;
+    final windowWidth = window.innerWidth?.toDouble() ?? 100;
+    for (int i = 0; i < 40; ++i) {
       double height = math.Random().nextDouble() * (150 - 20) + 20;
       Color color = Bubble.colors[math.Random().nextInt(Bubble.colors.length)];
-      double x = math.Random().nextDouble() * 1000;
-      double y = math.Random().nextDouble() * 1000;
+      double x = math.Random().nextDouble() * (windowWidth);
+      double y = math.Random().nextDouble() * (windowHeight);
       double speedX =
           (math.Random().nextDouble() - 0.5) * 0.5 * Bubble.speedMultiplier;
       double speedY =
@@ -87,14 +88,15 @@ class BubbleAnimationState extends State<BubbleAnimation> {
       styles: Styles.combine(
         [
           Styles.box(
-            height: Unit.pixels(1000),
-            width: Unit.pixels(1000),
+            height: Unit.percent(100),
+            width: Unit.percent(100),
             position: Position.relative(),
             overflow: Overflow.hidden,
           ),
           Styles.background(
             color: Colors.black,
-          )
+          ),
+          Styles.raw({"z-index": "0"}),
         ],
       ),
     );
@@ -112,16 +114,16 @@ class BubbleAnimationState extends State<BubbleAnimation> {
       double width = bubble.radius;
       double height = bubble.radius;
 
-      double innerWidth = 1000;
-      double innerHeight = 1000;
+      final windowHeight = window.innerHeight?.toDouble() ?? 100;
+      final windowWidth = window.innerWidth?.toDouble() ?? 100;
 
       left += bubble.dx * timeStampDiff / 16.6667;
       top += bubble.dy * timeStampDiff / 16.6667;
 
-      if (left < 0 - width) left = innerWidth;
-      if (left > innerWidth) left = 0 - width;
-      if (top < 0 - height) top = innerHeight;
-      if (top > innerHeight) top = 0 - height;
+      if (left < 0 - width) left = windowWidth;
+      if (left > windowWidth) left = 0 - width;
+      if (top < 0 - height) top = windowHeight;
+      if (top > windowHeight) top = 0 - height;
 
       bubble.x = left;
       bubble.y = top;
