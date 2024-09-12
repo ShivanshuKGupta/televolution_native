@@ -1,9 +1,8 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
+import 'package:televolution_native/pages/home.dart';
 
-import 'components/header.dart';
 import 'pages/about.dart';
-import 'pages/home.dart';
 
 // The main component of your application.
 class App extends StatelessComponent {
@@ -22,12 +21,20 @@ class App extends StatelessComponent {
       Router(routes: [
         ShellRoute(
           builder: (context, state, child) => Fragment(children: [
-            const Header(),
+            // const Header(),
             child,
           ]),
           routes: [
-            Route(path: '/', title: 'Home', builder: (context, state) => const Home()),
-            Route(path: '/about', title: 'About', builder: (context, state) => const About()),
+            Route(
+              path: '/',
+              title: 'Screensaver',
+              builder: (context, state) => const ScreensaverScreen(),
+            ),
+            Route(
+              path: '/about',
+              title: 'About',
+              builder: (context, state) => const About(),
+            ),
           ],
         ),
       ]),

@@ -1,22 +1,32 @@
 import 'package:jaspr/jaspr.dart';
-import 'package:televolution_native/appwrite.dart';
+import 'package:televolution_native/pages/bubble_animation.dart';
 
-import '../components/counter.dart';
-
-class Home extends StatelessComponent {
-  const Home({super.key});
+class ScreensaverScreen extends StatelessComponent {
+  const ScreensaverScreen({super.key});
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    yield section([
-      img(src: 'images/logo.png', width: 80),
-      h1([text('Welcome')]),
-      p([text('You successfully create a new Jaspr site.')]),
-      button([text('Click me')], onClick: () {
-        Appwrite.getDoc();
-      }),
-      div(styles: Styles.box(height: 100.px), []),
-      const Counter(),
-    ]);
+    yield section(
+      [
+        img(
+          src: 'https://mytvpocroyal.com/web/assets/assets/images/logo.png',
+          width: 80,
+          styles: Styles.box(
+            border: Border.all(
+              BorderSide(color: Colors.white),
+            ),
+          ),
+        ),
+        h2([text('Welcome to the Stateroom Landon Byron')]),
+        h2([text('We Hope you enjoy excel')]),
+        h4([text('Press any key to continue')]),
+        BubbleAnimation(),
+      ],
+      styles: Styles.combine([
+        Styles.text(
+          color: Colors.black,
+        ),
+      ]),
+    );
   }
 }
