@@ -1,6 +1,7 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:televolution_native/components/clock.dart';
 import 'package:televolution_native/components/menu.dart';
+import 'package:televolution_native/pages/bubble_animation.dart';
 
 class ScreensaverScreen extends StatelessComponent {
   const ScreensaverScreen({super.key});
@@ -9,7 +10,7 @@ class ScreensaverScreen extends StatelessComponent {
   Iterable<Component> build(BuildContext context) sync* {
     yield section(
       [
-        // BubbleAnimation(),
+        BubbleAnimation(),
         div(
           [
             ClockComponent(builder: (context, time) {
@@ -93,9 +94,6 @@ class ScreensaverScreen extends StatelessComponent {
             Menu(),
           ],
           styles: Styles.combine([
-            Styles.background(
-              color: Colors.black,
-            ),
             Styles.box(
               position: Position.absolute(
                 top: Unit.pixels(0),

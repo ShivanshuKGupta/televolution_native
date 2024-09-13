@@ -54,7 +54,7 @@ class BubbleAnimation extends StatefulComponent {
 class BubbleAnimationState extends State<BubbleAnimation> {
   int count = 0;
   final List<Bubble> bubbles = [];
-  final fps = 60;
+  final fps = 15;
 
   @override
   void initState() {
