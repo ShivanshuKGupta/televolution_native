@@ -1,5 +1,6 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:televolution_native/components/clock.dart';
+import 'package:televolution_native/components/menu.dart';
 import 'package:televolution_native/pages/bubble_animation.dart';
 
 class ScreensaverScreen extends StatelessComponent {
@@ -89,7 +90,8 @@ class ScreensaverScreen extends StatelessComponent {
                 ),
                 Styles.raw({"z-index": "1"})
               ]),
-            )
+            ),
+            Menu(),
           ],
           styles: Styles.combine([
             Styles.box(
