@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:jaspr/jaspr.dart';
+import 'package:televolution_native/appwrite.dart';
 
 class Menu extends StatefulComponent {
   const Menu({super.key});
@@ -32,6 +33,19 @@ class _MenuState extends State<Menu> {
           focus = (focus + 1) % 3;
           print('Right arrow pressed');
           break;
+        case 'Enter':
+          AppwriteClient.database
+              .listDocuments(databaseId: 'main_database', collectionId: 'c_id')
+              .then((docs) {
+            print(docs.documents.map(
+              (doc) => doc.data,
+            ));
+          }).catchError((err) {
+            print(err);
+          });
+          break;
+        default:
+          print('Unknown key pressed: ${event.key}');
       }
       setState(() {});
     });
