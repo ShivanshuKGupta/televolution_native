@@ -6,11 +6,13 @@ import 'package:jaspr/jaspr.dart';
 class Bubble {
   static const speedMultiplier = 2;
   static final List<Color> colors = const [
+    Color.rgb(232, 116, 53),
+    Color.hex("0xFF061556"),
+    Color.hex("0xFF0073BB"),
     Colors.blue,
-    Colors.blueViolet,
-    Colors.darkBlue,
-    Colors.skyBlue,
-    Colors.orange,
+    Color.rgb(68, 138, 255),
+    Color.hex("0xFF2B6FC0"),
+    Color.hex("0xFF131C49"),
   ];
   double x, y;
   Color color;
