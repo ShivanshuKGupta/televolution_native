@@ -61,5 +61,5 @@ class AppwriteClient {
 
   static final account = Account(client);
   static final database = Databases(client);
-  static final storage = Storage(client); 
+  static final storage = Storage(client);
 }

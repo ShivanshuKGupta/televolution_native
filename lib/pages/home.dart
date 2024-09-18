@@ -1,10 +1,25 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:televolution_native/components/clock.dart';
 import 'package:televolution_native/components/menu.dart';
+import 'package:televolution_native/focus_system/keyboard_manager.dart';
 import 'package:televolution_native/pages/bubble_animation.dart';
 
-class ScreensaverScreen extends StatelessComponent {
+class ScreensaverScreen extends StatefulComponent {
   const ScreensaverScreen({super.key});
+
+  @override
+  State<StatefulComponent> createState() {
+    return ScreensaverScreenState();
+  }
+}
+
+class ScreensaverScreenState extends State<ScreensaverScreen> {
+  @override
+  void initState() {
+    print('Menu init');
+    KeyboardManager.init();
+    super.initState();
+  }
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
