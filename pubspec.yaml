@@ -9,6 +9,7 @@ dependencies:
   dart_appwrite: ^12.1.0
   http: ^1.2.2
   jaspr: ^0.15.0
+  jaspr_riverpod: ^0.3.14
   jaspr_router: ^0.5.1
 
 dev_dependencies:
