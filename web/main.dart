@@ -5,7 +5,7 @@
 // Client-specific jaspr import.
 import 'package:jaspr/browser.dart';
 // Imports the [App] component.
-import 'package:televolution_native/app.dart';
+import 'package:televolution_native/app/app.dart';
 
 void main() {
   // Attaches the [App] component to the <body> of the page.

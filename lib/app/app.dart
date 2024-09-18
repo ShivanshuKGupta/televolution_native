@@ -1,8 +1,8 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
-import 'package:televolution_native/pages/home.dart';
+import 'package:televolution_native/pages/splash.dart';
 
-import 'pages/about.dart';
+import '../pages/about.dart';
 
 // The main component of your application.
 class App extends StatelessComponent {
