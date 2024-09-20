@@ -98,7 +98,7 @@ class BubbleAnimationState extends State<BubbleAnimation> {
           Styles.background(
             color: Colors.black,
           ),
-          Styles.raw({"z-index": "0"}),
+          Styles.raw({"z-index": "-10"}),
         ],
       ),
     );

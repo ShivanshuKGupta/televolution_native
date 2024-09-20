@@ -32,17 +32,18 @@ class Box extends StatelessComponent {
   @override
   Iterable<Component> build(BuildContext context) sync* {
     yield FocusComponent(
-        onTap: () {
-          print('Box $title tapped');
-        },
-        borderRadius: BorderRadius.circular(
-          Unit.pixels(20),
-        ),
-        child: div(
-          [
-            h1([text('Box $title')]),
-            p([text('This is box $title.')]),
-          ],
-        ));
+      onTap: () {
+        print('Box $title tapped');
+      },
+      borderRadius: BorderRadius.circular(
+        Unit.pixels(20),
+      ),
+      child: div(
+        [
+          h1([text('Box $title')]),
+          p([text('This is box $title.')]),
+        ],
+      ),
+    );
   }
 }
