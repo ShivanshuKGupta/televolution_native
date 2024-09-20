@@ -8,9 +8,10 @@ class ScreensaverScreen extends StatelessComponent {
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
+    yield BubbleAnimation();
+
     yield section(
       [
-        BubbleAnimation(),
         div(
           [
             ClockComponent(builder: (context, time) {
@@ -88,7 +89,7 @@ class ScreensaverScreen extends StatelessComponent {
                   justifyContent: JustifyContent.center,
                   alignItems: AlignItems.center,
                 ),
-                Styles.raw({"z-index": "1"})
+                Styles.raw({"z-index": "1", "pointer-events": "none"})
               ]),
             ),
             Menu(),
@@ -106,9 +107,7 @@ class ScreensaverScreen extends StatelessComponent {
             Styles.flexbox(
               direction: FlexDirection.column,
               justifyContent: JustifyContent.spaceBetween,
-              // alignItems: AlignItems.center,
             ),
-            Styles.raw({"z-index": "1"})
           ]),
         ),
       ],

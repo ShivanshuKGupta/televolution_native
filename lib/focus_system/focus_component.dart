@@ -40,7 +40,10 @@ class FocusComponent extends StatelessComponent {
         child,
       ],
       classes: 'focusable',
-      attributes: {'tabindex': tabIndex.toString()},
+      attributes: {
+        'tabindex': tabIndex.toString(),
+        'z-index': "10",
+      },
     );
   }
 }
