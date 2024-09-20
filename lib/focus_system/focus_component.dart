@@ -7,6 +7,7 @@ class FocusComponent extends StatelessComponent {
   final Color focusedBorderColor;
   final int focusedBorderWidth;
   final BorderRadius? borderRadius;
+  final void Function() onTap;
 
   const FocusComponent({
     super.key,
@@ -16,11 +17,13 @@ class FocusComponent extends StatelessComponent {
     this.focusedBorderColor = Colors.white,
     this.focusedBorderWidth = 4,
     this.borderRadius,
+    required this.onTap,
   });
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
     yield div(
+      events: {'click': (event) => onTap.call()},
       [
         raw('''
           <style>

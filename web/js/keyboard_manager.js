@@ -65,6 +65,10 @@ function handleArrowNavigation(event) {
         case 'Backspace':
             window.history.back();
             break;
+        case 'Enter':
+            const clickEvent = new Event('click');
+            currentElement.dispatchEvent(clickEvent);
+            break;
     }
 
 }
