@@ -52,10 +52,21 @@ function handleArrowNavigation(event) {
         return;
     }
 
-    const closestElement = findClosestElement(currentElement, event.key);
-    if (closestElement) {
-        closestElement.focus();
+    switch (event.key) {
+        case 'ArrowDown':
+        case 'ArrowRight':
+        case 'ArrowUp':
+        case 'ArrowLeft':
+            const closestElement = findClosestElement(currentElement, event.key);
+            if (closestElement) {
+                closestElement.focus();
+            }
+            break;
+        case 'Backspace':
+            window.history.back();
+            break;
     }
+
 }
 
 // Initialize
