@@ -1,14 +1,17 @@
 import 'package:jaspr/jaspr.dart';
-import 'package:televolution_native/components/clock.dart';
-import 'package:televolution_native/components/menu.dart';
-import 'package:televolution_native/pages/bubble_animation.dart';
 
+import '../../../components/clock.dart';
+import '../../../components/menu.dart';
+import '../../../pages/bubble_animation.dart';
 class ScreensaverScreen extends StatelessComponent {
   const ScreensaverScreen({super.key});
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    yield BubbleAnimation();
+
+
+
+    yield const BubbleAnimation();
 
     yield section(
       [
@@ -20,7 +23,7 @@ class ScreensaverScreen extends StatelessComponent {
                   text(
                       '${time.hour}:${time.minute.toString().padLeft(2, '0')}'),
                 ],
-                styles: Styles.combine([
+                styles: const Styles.combine([
                   Styles.box(
                     margin: EdgeInsets.zero,
                     padding: EdgeInsets.only(top: Unit.pixels(0)),
@@ -41,12 +44,12 @@ class ScreensaverScreen extends StatelessComponent {
                   src:
                       'https://mytvpocroyal.com/web/assets/assets/images/logo.png',
                   width: 150,
-                  styles: Styles.raw({
-                    "filter": "brightness(0) invert(1)",
+                  styles: const Styles.raw({
+                    'filter': 'brightness(0) invert(1)',
                   }),
                 ),
                 h2([text('Welcome to the Stateroom Landon Byron')],
-                    styles: Styles.combine([
+                    styles: const Styles.combine([
                       Styles.box(
                         padding: EdgeInsets.only(top: Unit.pixels(20)),
                         margin: EdgeInsets.zero,
@@ -57,7 +60,7 @@ class ScreensaverScreen extends StatelessComponent {
                       ),
                     ])),
                 h2([text('We Hope you enjoy excel')],
-                    styles: Styles.combine([
+                    styles: const Styles.combine([
                       Styles.box(
                         margin: EdgeInsets.zero,
                         padding: EdgeInsets.only(top: Unit.pixels(0)),
@@ -68,13 +71,13 @@ class ScreensaverScreen extends StatelessComponent {
                       ),
                     ])),
                 h4([text('Press any key to continue')],
-                    styles: Styles.combine([
+                    styles: const Styles.combine([
                       Styles.box(
                         margin: EdgeInsets.only(top: Unit.pixels(20)),
                       ),
                     ])),
               ],
-              styles: Styles.combine([
+              styles: const Styles.combine([
                 Styles.box(
                   position: Position.absolute(
                     top: Unit.pixels(0),
@@ -89,12 +92,12 @@ class ScreensaverScreen extends StatelessComponent {
                   justifyContent: JustifyContent.center,
                   alignItems: AlignItems.center,
                 ),
-                Styles.raw({"z-index": "1", "pointer-events": "none"})
+                Styles.raw({'z-index': '1', 'pointer-events': 'none'})
               ]),
             ),
-            Menu(),
+            const Menu(),
           ],
-          styles: Styles.combine([
+          styles: const Styles.combine([
             Styles.box(
               position: Position.absolute(
                 top: Unit.pixels(0),
@@ -111,7 +114,7 @@ class ScreensaverScreen extends StatelessComponent {
           ]),
         ),
       ],
-      styles: Styles.combine([
+      styles: const Styles.combine([
         Styles.text(
           color: Colors.white,
         ),

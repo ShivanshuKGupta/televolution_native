@@ -15,16 +15,36 @@ include: package:lints/recommended.yaml
 
 # Uncomment the following section to specify additional rules.
 
-# linter:
-#   rules:
-#     - camel_case_types
+linter:
+  rules:
+    avoid_print: true  
+    prefer_single_quotes: true
+    sort_pub_dependencies: true
+    unnecessary_new: true
+    unnecessary_raw_strings: true
+    unnecessary_const: true
+    sized_box_for_whitespace: true
+    prefer_foreach: true
+    camel_case_types: true
+    always_declare_return_types: true
+    unsafe_html: true
+    prefer_relative_imports: true
+    avoid_relative_lib_imports: true
+    directives_ordering: true
+    package_api_docs: true
 
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+    prefer_const_constructors: true
+    avoid_dynamic_calls: true
+    avoid_types_as_parameter_names: true
+    cancel_subscriptions: true
+    close_sinks: true
+    empty_statements: true
+    flutter_style_todos: true
+    no_duplicate_case_values: true
+    comment_references: true
+    unnecessary_statements: true
+    combinators_ordering: true
 
-# For more information about the core and recommended set of lints, see
-# https://dart.dev/go/core-lints
-
-# For additional information about configuring this file, see
-# https://dart.dev/guides/language/analysis-options
+analyzer:
+  errors:
+    invalid_annotation_target: ignore

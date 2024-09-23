@@ -42,7 +42,7 @@ class FocusComponent extends StatelessComponent {
       classes: 'focusable',
       attributes: {
         'tabindex': tabIndex.toString(),
-        'z-index': "10",
+        'z-index': '10',
       },
     );
   }

@@ -11,5 +11,5 @@ import 'package:televolution_native/realtime.dart';
 void main() {
   AppwriteRealtimeService.init();
   // Attaches the [App] component to the <body> of the page.
-  runApp(App());
+  runApp(const App());
 }

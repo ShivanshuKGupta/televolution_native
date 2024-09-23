@@ -7,12 +7,12 @@ class Bubble {
   static const speedMultiplier = 2;
   static final List<Color> colors = const [
     Color.rgb(232, 116, 53),
-    Color.hex("0xFF061556"),
-    Color.hex("0xFF0073BB"),
+    Color.hex('0xFF061556'),
+    Color.hex('0xFF0073BB'),
     Colors.blue,
     Color.rgb(68, 138, 255),
-    Color.hex("0xFF2B6FC0"),
-    Color.hex("0xFF131C49"),
+    Color.hex('0xFF2B6FC0'),
+    Color.hex('0xFF131C49'),
   ];
   double x, y;
   Color color;
@@ -28,8 +28,8 @@ class Bubble {
         Styles.background(
           color: color,
         ),
-        Styles.raw({
-          "filter": "blur(50px)",
+        const Styles.raw({
+          'filter': 'blur(50px)',
         }),
         Styles.box(
           radius: BorderRadius.circular(Unit.pixels(radius)),
@@ -41,7 +41,7 @@ class Bubble {
           ),
         ),
       ]),
-      classes: "bubble",
+      classes: 'bubble',
     );
   }
 }
@@ -87,7 +87,7 @@ class BubbleAnimationState extends State<BubbleAnimation> {
     yield div(
       classes: 'BubbleAnimation',
       [...(bubbles.map((e) => e.toComponent()))],
-      styles: Styles.combine(
+      styles: const Styles.combine(
         [
           Styles.box(
             height: Unit.percent(100),
@@ -98,7 +98,7 @@ class BubbleAnimationState extends State<BubbleAnimation> {
           Styles.background(
             color: Colors.black,
           ),
-          Styles.raw({"z-index": "-10"}),
+          Styles.raw({'z-index': '-10'}),
         ],
       ),
     );

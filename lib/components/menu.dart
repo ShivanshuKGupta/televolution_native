@@ -1,5 +1,5 @@
 import 'package:jaspr/jaspr.dart';
-import 'package:televolution_native/focus_system/focus_component.dart';
+import '../core/utils/focus_component.dart';
 
 class Menu extends StatelessComponent {
   const Menu({super.key});
@@ -8,11 +8,11 @@ class Menu extends StatelessComponent {
   Iterable<Component> build(BuildContext context) sync* {
     yield div(
       [
-        Box(1),
-        Box(2),
-        Box(3),
+        const Box(1),
+        const Box(2),
+        const Box(3),
       ],
-      styles: Styles.combine(
+      styles: const Styles.combine(
         [
           Styles.flexbox(
             justifyContent: JustifyContent.center,
@@ -35,7 +35,7 @@ class Box extends StatelessComponent {
       onTap: () {
         print('Box $title tapped');
       },
-      borderRadius: BorderRadius.circular(
+      borderRadius: const BorderRadius.circular(
         Unit.pixels(20),
       ),
       child: div(
