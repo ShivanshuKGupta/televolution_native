@@ -8,12 +8,6 @@ import 'package:js/js.dart';
 import 'package:web/web.dart';
 
 final class AppwriteRealtimeService {
-  AppwriteRealtimeService._() {
-    init();
-  }
-
-  static final instance = AppwriteRealtimeService._();
-
   static void init() {
     print("Realtime event listener added in dart!");
     window.addEventListener('realtime_event', onRealtimeEvent.toJS);
