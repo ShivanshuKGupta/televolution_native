@@ -1,43 +1,9 @@
 import 'package:dart_appwrite/dart_appwrite.dart';
-import 'package:http/http.dart' as http;
-
-final class Appwrite {
-  static const serverEndpoint = 'https://cloud.appwrite.io/v1';
-  static const headers = {
-    'X-Appwrite-Project': projectId,
-    'Content-Type': 'application/json',
-  };
-  static const projectId = '66b20ea5002316ed487f';
-
-  static Future<dynamic> listDocument({
-    String databaseId = "main_database",
-    required String collectionId,
-    required String docId,
-  }) async {
-    final doc = await http.get(
-      Uri.parse(
-          "$serverEndpoint/databases/$databaseId/collections/$collectionId/documents/$docId"),
-      headers: headers,
-    );
-    print(doc);
-  }
-
-  static Future<dynamic> listDocuments({
-    String databaseId = "main_database",
-    required String collectionId,
-  }) async {
-    final doc = await http.get(
-      Uri.parse(
-          "$serverEndpoint/databases/$databaseId/collections/$collectionId/documents"),
-      headers: headers,
-    );
-    print(doc);
-  }
-}
 
 class AppwriteClient {
-  static const String endPoint = 'https://7xwrgbhq-80.inc1.devtunnels.ms/v1';
-  static const String projectId = 'televolution';
+  static const String endPoint =
+      'https://7xwrgbhq-80.inc1.devtunnels.ms/v1'; // https://cloud.appwrite.io/v1
+  static const String projectId = 'televolution'; // 66b20ea5002316ed487f
 
   /// The Main Database ID
   static const String dbId = 'lite-db';
