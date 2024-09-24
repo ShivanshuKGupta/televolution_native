@@ -1,6 +1,5 @@
 import 'appwrite/appwrite.dart';
 import 'appwrite/model_stream.dart';
-import 'appwrite/mustache.dart';
 import 'data/models/app_strings_model.dart';
 import 'data/models/passenger_model.dart';
 
@@ -29,11 +28,6 @@ Passenger currentPassenger = Passenger(
 );
 
 AppStringsModel appStrings = AppStringsModel(data: {});
-
-Map<String, Mustache> get globalData => {
-      'user': currentPassenger,
-      'app_strings': appStrings,
-    };
 
 final ModelStream<AppStringsModel> _appStringsStreamSubscription =
     ModelStream<AppStringsModel>(

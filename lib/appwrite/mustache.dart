@@ -1,9 +1,38 @@
 import '../core/utils/log_extension.dart';
-import '../globals.dart';
 
 /// A class that provides a way to convert an object to a JSON object.
 /// The JSON object can be used to interpolate the object in a template.
 abstract class Mustache {
+  /// A function that returns a map of global data that can be used to
+  /// interpolate the template strings.
+  ///
+  /// For ex,
+  /// ```dart
+  /// currentPassenger = Passenger(
+  ///   $id: '',
+  ///  fName: 'ABC',
+  ///  lName: 'XYZ',
+  ///  cabinNumber: 0,
+  /// );
+  ///
+  /// Mustache.getGlobalData = () => {
+  ///  'user': currentPassenger,
+  ///  'app_strings': appStrings,
+  /// };
+  /// ```
+  ///
+  /// and then the template string can be
+  /// ```dart
+  /// '{{user.fName}} {{user.lName}}'
+  /// ```
+  ///
+  /// and the output will be
+  /// ```dart
+  /// 'ABC XYZ'
+  /// ```
+  static Map<String, Mustache> Function() getGlobalData =
+      () => throw 'Mustache.getGlobalData is not initialized';
+
   String $id;
 
   Mustache({required this.$id});
@@ -25,7 +54,7 @@ String _interpolateString(
   String template, [
   Map<String, dynamic>? values,
 ]) {
-  values ??= globalData;
+  values ??= Mustache.getGlobalData();
 
   return template.replaceAllMapped(RegExp(r'\{\{(.*?)\}\}'), (match) {
     final String key = (match.group(1) ?? '').trim();
@@ -41,7 +70,7 @@ String _interpolateString(
 }
 
 /// Gets a value from a [dataMap] using a [property] path. \
-/// If [dataMap] is null, then [globalData] will be used as [dataMap].
+/// If [dataMap] is null, then [Mustache.getGlobalData] will be used as [dataMap].
 ///
 /// For example, if the [property] is `a.b.c` and the [dataMap] is
 /// ```
