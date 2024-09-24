@@ -56,13 +56,12 @@ class BubbleAnimation extends StatefulComponent {
 class BubbleAnimationState extends State<BubbleAnimation> {
   int count = 0;
   final List<Bubble> bubbles = [];
-  final fps = 15;
 
   @override
   void initState() {
     final windowHeight = window.innerHeight?.toDouble() ?? 100;
     final windowWidth = window.innerWidth?.toDouble() ?? 100;
-    for (int i = 0; i < 40; ++i) {
+    for (int i = 0; i < 60; ++i) {
       double height = math.Random().nextDouble() * (150 - 20) + 20;
       Color color = Bubble.colors[math.Random().nextInt(Bubble.colors.length)];
       double x = math.Random().nextDouble() * (windowWidth);
@@ -104,11 +103,7 @@ class BubbleAnimationState extends State<BubbleAnimation> {
   num previousTimeStamp = 0;
 
   void moveBubble(num timeStamp) {
-    final timeStampDiff = (timeStamp - previousTimeStamp) / 10;
-    if (timeStampDiff > 10 && previousTimeStamp != 0) {
-      /// If the system load is heavy, then the animation needs to stop
-      return;
-    }
+    final timeStampDiff = (timeStamp - previousTimeStamp) / 20;
     previousTimeStamp = timeStamp;
 
     for (Bubble bubble in bubbles) {
@@ -123,10 +118,10 @@ class BubbleAnimationState extends State<BubbleAnimation> {
       left += bubble.dx * timeStampDiff;
       top += bubble.dy * timeStampDiff;
 
-      if (left < 0 - width) left = windowWidth;
-      if (left > windowWidth) left = 0 - width;
-      if (top < 0 - height) top = windowHeight;
-      if (top > windowHeight) top = 0 - height;
+      if (left < 0 - width * 2) left = windowWidth + width;
+      if (left - width > windowWidth) left = 0 - width;
+      if (top < 0 - height * 2) top = windowHeight + height;
+      if (top - height > windowHeight) top = 0 - height;
 
       bubble.x = left;
       bubble.y = top;
