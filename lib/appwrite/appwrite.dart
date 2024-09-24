@@ -6,7 +6,7 @@ import 'package:web/web.dart';
 import '../core/utils/js_to_map.dart';
 import 'realtime_models.dart';
 
-part 'realtime.g.dart';
+part 'raw_realtime.g.dart';
 
 class AppwriteClient {
   static const String endPoint =
