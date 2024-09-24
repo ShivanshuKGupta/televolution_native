@@ -1,10 +1,6 @@
-import 'dart:js_interop';
+part of 'appwrite.dart';
 
-import 'package:web/web.dart';
-
-import 'core/utils/js_to_map.dart';
-
-final class AppwriteRealtimeService {
+abstract class AppwriteRealtimeService {
   static void init() {
     console.log('Realtime event listener added in dart!'.toJS);
     window.addEventListener('realtime_event', onRealtimeEvent.toJS);
