@@ -1,14 +1,12 @@
 import '../../appwrite/mustache.dart';
 
 class Passenger extends Mustache {
-  int id;
   String fName;
   String lName;
   int cabinNumber;
 
   Passenger({
     required super.$id,
-    required this.id,
     required this.fName,
     required this.lName,
     required this.cabinNumber,
@@ -18,10 +16,9 @@ class Passenger extends Mustache {
   factory Passenger.fromJson(Map<String, dynamic> json) {
     return Passenger(
       $id: json['\$id'],
-      id: json['id'],
-      fName: json['f_name'],
-      lName: json['l_name'],
-      cabinNumber: int.tryParse(json['cabin_number'].toString()) ?? 0,
+      fName: json['fName'],
+      lName: json['lName'],
+      cabinNumber: int.tryParse(json['cabinNumber'].toString()) ?? 0,
     );
   }
 
@@ -29,10 +26,9 @@ class Passenger extends Mustache {
   Map<String, dynamic> toJson() {
     return {
       '\$id': $id,
-      'id': id,
-      'f_name': fName,
-      'l_name': lName,
-      'cabin_number': cabinNumber,
+      'fName': fName,
+      'lName': lName,
+      'cabinNumber': cabinNumber,
     };
   }
 }

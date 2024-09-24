@@ -23,7 +23,6 @@ const bool localDevelopment = bool.fromEnvironment('USE_CLOUD');
 
 Passenger currentPassenger = Passenger(
   $id: '',
-  id: 0,
   fName: 'ERROR',
   lName: 'Byron',
   cabinNumber: 0,

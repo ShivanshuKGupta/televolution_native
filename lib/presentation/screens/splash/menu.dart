@@ -18,7 +18,7 @@ class Menu extends StatelessComponent {
       builder: (context, snapshot) sync* {
         final passengers = snapshot.data;
         if (passengers == null) {
-          yield const Loading();
+          yield text('Loading...');
           return;
         }
 
