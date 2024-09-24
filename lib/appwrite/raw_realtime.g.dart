@@ -8,6 +8,7 @@ abstract class RawRealtimeService {
   static void init() =>
       window.addEventListener('realtime_event', _onRealtimeEvent.toJS);
 
+  /// Trgiggered when a realtime event is received
   static void _onRealtimeEvent(Event event) {
     console.log('We got a realtime event in dart!'.toJS);
     if (event is CustomEvent) {
@@ -15,8 +16,9 @@ abstract class RawRealtimeService {
           RealtimePayload.fromJson(convertJsObjectToMap(event.detail));
       console.log('realtime_event.detail = $payload'.toJS);
 
-      for (final channel in payload.channels) {
-        _listeners[channel]?.forEach((listener) => listener(payload));
+      for (final realtimeChannel in payload.channels) {
+        _listeners[realtimeChannel.channel]
+            ?.forEach((listener) => listener(payload));
       }
     } else {
       console.log('realtime_event = $event'.toJS);
@@ -26,15 +28,23 @@ abstract class RawRealtimeService {
     }
   }
 
-  /// Adds a listener for the channel
-  static void addListener(String channel, RealtimeListener callback) {
-    _listeners[channel] ??= [];
-    _listeners[channel]!.add(callback);
+  /// Adds a listener for changes to channel
+  static void addListener(
+    RealtimeChannel realtimeChannel,
+    RealtimeListener callback,
+  ) {
+    _listeners[realtimeChannel.channel] ??= [];
+    _listeners[realtimeChannel.channel]!.add(callback);
   }
 
-  /// Removes a listener for the channel
-  static void removeListener(String channel, RealtimeListener callback) {
-    _listeners[channel]?.remove(callback);
-    if (_listeners[channel]?.isEmpty == true) _listeners.remove(channel);
+  /// Removes a listener for changes to channel
+  static void removeListener(
+    RealtimeChannel realtimeChannel,
+    RealtimeListener callback,
+  ) {
+    _listeners[realtimeChannel.channel]?.remove(callback);
+    if (_listeners[realtimeChannel.channel]?.isEmpty == true) {
+      _listeners.remove(realtimeChannel.channel);
+    }
   }
 }
