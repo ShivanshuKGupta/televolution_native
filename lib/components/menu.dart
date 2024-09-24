@@ -47,25 +47,23 @@ class Box extends StatelessComponent {
       ),
       child: div(
         [
-          div([
-            div([
-              h1([text(title)]),
-            ],
-                styles: const Styles.box(
-                  radius: BorderRadius.all(
-                    Radius.circular(
-                      Unit.pixels(40),
-                    ),
-                  ),
-                )),
-          ],
-              styles: Styles.background(
+          h1(
+            [text(title)],
+            styles: Styles.combine([
+              Styles.background(
                 color: Color.rgb(
                   random.nextInt(255),
                   random.nextInt(255),
                   random.nextInt(255),
                 ),
-              )),
+              ),
+              const Styles.box(
+                width: Unit.vh(10),
+                height: Unit.vh(10),
+                radius: BorderRadius.circular(Unit.percent(50)),
+              ),
+            ]),
+          ),
           h3([text('This is box $title.')]),
         ],
         styles: const Styles.box(

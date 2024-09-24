@@ -1,10 +1,9 @@
 part of 'appwrite.dart';
 
 abstract class RawRealtimeService {
-  /// Static Variables
   static final Map<String, List<RealtimeListener>> _listeners = {};
 
-  /// Static Methods
+  /// Initializes the Realtime Service
   static void init() =>
       window.addEventListener('realtime_event', _onRealtimeEvent.toJS);
 
