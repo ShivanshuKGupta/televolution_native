@@ -18,7 +18,9 @@ class Menu extends StatelessComponent {
       builder: (context, snapshot) sync* {
         final passengers = snapshot.data;
         if (passengers == null) {
-          yield const Loading();
+          yield div([
+            text('Loading...'),
+          ]);
           return;
         }
 
@@ -65,7 +67,7 @@ class Box extends StatelessComponent {
       child: div(
         [
           h1(
-            [text(title)],
+            [text('${title[0]}${title[1]}'.toUpperCase())],
             styles: Styles.combine([
               Styles.background(
                   color: Color.rgb(
@@ -90,7 +92,7 @@ class Box extends StatelessComponent {
               ),
             ]),
           ),
-          h3([text('This is box $title.')]),
+          h3([text(title)]),
         ],
         styles: const Styles.box(
           radius: BorderRadius.all(
