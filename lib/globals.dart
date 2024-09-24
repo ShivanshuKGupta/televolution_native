@@ -1,6 +1,6 @@
 import 'appwrite/appwrite.dart';
+import 'appwrite/model_stream.dart';
 import 'appwrite/mustache.dart';
-import 'appwrite/realtime_stream.dart';
 import 'data/models/app_strings_model.dart';
 import 'data/models/passenger_model.dart';
 
