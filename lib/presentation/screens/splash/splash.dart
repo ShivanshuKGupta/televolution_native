@@ -97,7 +97,20 @@ class ScreensaverScreen extends StatelessComponent {
                 Styles.raw({'z-index': '1', 'pointer-events': 'none'})
               ]),
             ),
-            const Menu(),
+            div([
+              div([
+                text(
+                  'Who\'s Watching?',
+                ),
+              ],
+                  styles: const Styles.text(
+                      align: TextAlign.center,
+                      color: Colors.white,
+                      fontSize: Unit.pixels(35),
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: Unit.pixels(1))),
+              const Menu(),
+            ])
           ],
           styles: const Styles.combine([
             Styles.box(

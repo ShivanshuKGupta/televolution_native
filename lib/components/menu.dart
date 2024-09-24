@@ -1,4 +1,5 @@
 import 'dart:js_interop';
+import 'dart:math';
 
 import 'package:jaspr/jaspr.dart';
 import 'package:web/web.dart';
@@ -12,9 +13,9 @@ class Menu extends StatelessComponent {
   Iterable<Component> build(BuildContext context) sync* {
     yield div(
       [
-        const Box(1),
-        const Box(2),
-        const Box(3),
+        const Box('1'),
+        const Box('2'),
+        const Box('3'),
       ],
       styles: const Styles.combine(
         [
@@ -29,8 +30,10 @@ class Menu extends StatelessComponent {
   }
 }
 
+Random random = Random();
+
 class Box extends StatelessComponent {
-  final int title;
+  final String title;
   const Box(this.title, {super.key});
 
   @override
@@ -44,9 +47,35 @@ class Box extends StatelessComponent {
       ),
       child: div(
         [
-          h1([text('Box $title')]),
-          p([text('This is box $title.')]),
+          div([
+            div([
+              h1([text(title)]),
+            ],
+                styles: const Styles.box(
+                  radius: BorderRadius.all(
+                    Radius.circular(
+                      Unit.pixels(40),
+                    ),
+                  ),
+                )),
+          ],
+              styles: Styles.background(
+                color: Color.rgb(
+                  random.nextInt(255),
+                  random.nextInt(255),
+                  random.nextInt(255),
+                ),
+              )),
+          h3([text('This is box $title.')]),
         ],
+        styles: const Styles.box(
+          radius: BorderRadius.all(
+            Radius.circular(
+              Unit.pixels(20),
+            ),
+          ),
+          padding: EdgeInsets.all(Unit.pixels(20)),
+        ),
       ),
     );
   }
