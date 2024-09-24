@@ -101,23 +101,27 @@ class BubbleAnimationState extends State<BubbleAnimation> {
     );
   }
 
-  DateTime previousTimeStamp = DateTime.now();
+  num previousTimeStamp = 0;
 
   void moveBubble(num timeStamp) {
-    double timeStampDiff =
-        timeStamp - previousTimeStamp.millisecondsSinceEpoch.toDouble();
-    previousTimeStamp = DateTime.now();
+    final timeStampDiff = (timeStamp - previousTimeStamp) / 10;
+    if (timeStampDiff > 10 && previousTimeStamp != 0) {
+      /// If the system load is heavy, then the animation needs to stop
+      return;
+    }
+    previousTimeStamp = timeStamp;
+
     for (Bubble bubble in bubbles) {
       double left = bubble.x;
       double top = bubble.y;
-      double width = bubble.radius;
-      double height = bubble.radius;
+      double width = bubble.radius * 2;
+      double height = bubble.radius * 2;
 
       final windowHeight = window.innerHeight?.toDouble() ?? 100;
       final windowWidth = window.innerWidth?.toDouble() ?? 100;
 
-      left += bubble.dx * timeStampDiff / 16.6667;
-      top += bubble.dy * timeStampDiff / 16.6667;
+      left += bubble.dx * timeStampDiff;
+      top += bubble.dy * timeStampDiff;
 
       if (left < 0 - width) left = windowWidth;
       if (left > windowWidth) left = 0 - width;
@@ -128,7 +132,7 @@ class BubbleAnimationState extends State<BubbleAnimation> {
       bubble.y = top;
     }
 
+    window.requestAnimationFrame(moveBubble);
     setState(() {});
-    // window.requestAnimationFrame(moveBubble);
   }
 }
