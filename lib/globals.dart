@@ -1,6 +1,6 @@
+import 'appwrite/mustache.dart';
 import 'data/models/app_strings_model.dart';
 import 'data/models/passenger_model.dart';
-import 'mustache.dart';
 
 bool verbose = true;
 const bool localDevelopment = bool.fromEnvironment('USE_CLOUD');

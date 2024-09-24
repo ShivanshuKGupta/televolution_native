@@ -1,4 +1,4 @@
-import '../../mustache.dart';
+import '../../appwrite/mustache.dart';
 
 class TimelineDataModel extends Mustache {
   int day;

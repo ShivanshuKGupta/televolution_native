@@ -3,7 +3,8 @@ import 'dart:js_interop';
 import 'package:dart_appwrite/dart_appwrite.dart' as dart_appwrite;
 import 'package:web/web.dart';
 
-import 'core/utils/js_to_map.dart';
+import '../core/utils/js_to_map.dart';
+import 'realtime_models.dart';
 
 part 'realtime.g.dart';
 

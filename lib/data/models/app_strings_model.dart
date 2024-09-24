@@ -1,4 +1,4 @@
-import '../../mustache.dart';
+import '../../appwrite/mustache.dart';
 
 part 'app_strings_model.g.dart';
 

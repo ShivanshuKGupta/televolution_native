@@ -1,4 +1,4 @@
-import '../../mustache.dart';
+import '../../appwrite/mustache.dart';
 
 class ModulesActivationModel extends Mustache {
   String title;

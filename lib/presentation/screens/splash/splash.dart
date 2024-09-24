@@ -1,16 +1,14 @@
 import 'package:jaspr/jaspr.dart';
-import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
 import '../../../components/clock.dart';
 import '../../../components/menu.dart';
 import '../../../pages/bubble_animation.dart';
-import 'splash_view_model.dart';
+
 class ScreensaverScreen extends StatelessComponent {
   const ScreensaverScreen({super.key});
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-
     // final splashProvider = context.watch(splashViewModelProvider);
 
     yield const BubbleAnimation();

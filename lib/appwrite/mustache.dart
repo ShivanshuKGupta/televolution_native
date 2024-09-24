@@ -1,5 +1,5 @@
-import 'core/utils/log_extension.dart';
-import 'globals.dart';
+import '../core/utils/log_extension.dart';
+import '../globals.dart';
 
 /// A class that provides a way to convert an object to a JSON object.
 /// The JSON object can be used to interpolate the object in a template.

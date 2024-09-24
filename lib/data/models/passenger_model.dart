@@ -1,4 +1,4 @@
-import '../../mustache.dart';
+import '../../appwrite/mustache.dart';
 
 class Passenger extends Mustache {
   int id;
