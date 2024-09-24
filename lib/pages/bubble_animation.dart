@@ -75,10 +75,7 @@ class BubbleAnimationState extends State<BubbleAnimation> {
       bubbles.add(Bubble(x, y, color, height, speedX, speedY));
     }
 
-    Future.delayed(
-      Duration(milliseconds: 1000 ~/ fps),
-      () => moveBubble(DateTime.now().millisecondsSinceEpoch),
-    );
+    window.requestAnimationFrame(moveBubble);
     super.initState();
   }
 
@@ -132,11 +129,6 @@ class BubbleAnimationState extends State<BubbleAnimation> {
     }
 
     setState(() {});
-
-    // requestAnimationFrame(moveBubble);
-    Future.delayed(
-      Duration(milliseconds: 1000 ~/ fps),
-      () => moveBubble(DateTime.now().millisecondsSinceEpoch),
-    );
+    // window.requestAnimationFrame(moveBubble);
   }
 }

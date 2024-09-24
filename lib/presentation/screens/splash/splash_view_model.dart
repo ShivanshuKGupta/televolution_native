@@ -7,9 +7,5 @@ class SplashViewModel extends StateNotifier<String> {
     // Add your initialization logic here.
   }
 
+  final splashViewModelProvider = StateNotifierProvider((ref) => SplashViewModel());
 }
-
-final splashViewModelProvider =
-    StateNotifierProvider<SplashViewModel, String>((ref) {
-  return SplashViewModel();
-});

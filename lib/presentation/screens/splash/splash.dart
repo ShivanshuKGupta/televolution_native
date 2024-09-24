@@ -11,7 +11,7 @@ class ScreensaverScreen extends StatelessComponent {
   @override
   Iterable<Component> build(BuildContext context) sync* {
 
-    final splashProvider = context.watch(splashViewModelProvider);
+
 
     yield const BubbleAnimation();
 
