@@ -65,7 +65,7 @@ class Box extends StatelessComponent {
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    Unit commonUnit = const Unit.vh(10);
+    Unit commonUnit = const Unit.vh(8);
 
     yield FocusComponent(
       onTap: () {
@@ -90,9 +90,9 @@ class Box extends StatelessComponent {
                     commonUnit,
                   )),
               Styles.text(
-                align: TextAlign.center,
-                lineHeight: commonUnit,
-              ),
+                  align: TextAlign.center,
+                  lineHeight: commonUnit,
+                  fontSize: const Unit.pixels(30)),
               Styles.box(
                 width: commonUnit,
                 height: commonUnit,
