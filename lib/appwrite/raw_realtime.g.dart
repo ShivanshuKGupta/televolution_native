@@ -10,18 +10,17 @@ abstract class RawRealtimeService {
 
   /// Trgiggered when a realtime event is received
   static void _onRealtimeEvent(Event event) {
-    console.log('We got a realtime event in dart!'.toJS);
     if (event is CustomEvent) {
       final payload =
           RealtimePayload.fromJson(convertJsObjectToMap(event.detail));
-      console.log('realtime_event.detail = $payload'.toJS);
+      console.log('[dart] realtime_event.detail = $payload'.toJS);
 
       for (final realtimeChannel in payload.channels) {
         _listeners[realtimeChannel.channel]
             ?.forEach((listener) => listener(payload));
       }
     } else {
-      console.log('realtime_event = $event'.toJS);
+      console.log('[dart] realtime_event = $event'.toJS);
       console.error(
           'Realtime Event was not of type CustomEvent, no listener will be called!!!'
               .toJS);
