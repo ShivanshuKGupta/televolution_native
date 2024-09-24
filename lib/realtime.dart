@@ -1,47 +1,22 @@
-@JS()
-library realtime_js;
-
 import 'dart:js_interop';
-import 'dart:js_util' as js_util;
 
-import 'package:js/js.dart';
 import 'package:web/web.dart';
+
+import 'core/utils/js_to_map.dart';
 
 final class AppwriteRealtimeService {
   static void init() {
-    print('Realtime event listener added in dart!');
+    console.log('Realtime event listener added in dart!'.toJS);
     window.addEventListener('realtime_event', onRealtimeEvent.toJS);
   }
 
   static void onRealtimeEvent(Event event) {
-    print('We got a realtime event in dart!');
+    console.log('We got a realtime event in dart!'.toJS);
     if (event is CustomEvent) {
-      final data = convertJsObjectToMap(event.detail!);
-      print('realtime_event.detail = $data');
+      final data = convertJsObjectToMap(event.detail);
+      console.log('realtime_event.detail = $data'.toJS);
     } else {
-      print('realtime_event = $event');
+      console.log('realtime_event = $event'.toJS);
     }
   }
-}
-
-Map<String, dynamic> convertJsObjectToMap(JSAny? jsObject) {
-  if (jsObject == null) {
-    return {};
-  }
-
-  Map<String, dynamic> result = {};
-  final keys = js_util.objectKeys(jsObject).map((key) => key.toString());
-
-  for (final key in keys) {
-    result[key] = js_util.getProperty(jsObject, key);
-    if (result[key].runtimeType.toString().contains('Object')) {
-      try {
-        result[key] = convertJsObjectToMap(result[key]);
-      } catch (e) {
-        print('WARNING: Error in converting js object to map at key($key): $e');
-      }
-    }
-  }
-
-  return result;
 }
