@@ -1,4 +1,11 @@
-import 'package:dart_appwrite/dart_appwrite.dart';
+import 'dart:js_interop';
+
+import 'package:dart_appwrite/dart_appwrite.dart' as dart_appwrite;
+import 'package:web/web.dart';
+
+import 'core/utils/js_to_map.dart';
+
+part 'realtime.g.dart';
 
 class AppwriteClient {
   static const String endPoint =
@@ -20,12 +27,12 @@ class AppwriteClient {
 
   AppwriteClient._();
 
-  static final client = Client()
+  static final client = dart_appwrite.Client()
     ..setEndpoint(endPoint)
     ..setProject(projectId)
     ..setSelfSigned();
 
-  static final account = Account(client);
-  static final database = Databases(client);
-  static final storage = Storage(client);
+  static final account = dart_appwrite.Account(client);
+  static final database = dart_appwrite.Databases(client);
+  static final storage = dart_appwrite.Storage(client);
 }

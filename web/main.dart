@@ -6,7 +6,7 @@
 import 'package:jaspr/browser.dart';
 // Imports the [App] component.
 import 'package:televolution_native/app/app.dart';
-import 'package:televolution_native/realtime.dart';
+import 'package:televolution_native/appwrite.dart';
 
 void main() {
   AppwriteRealtimeService.init();

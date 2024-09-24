@@ -11,7 +11,6 @@ dependencies:
   jaspr: ^0.15.0
   jaspr_riverpod: ^0.3.14
   jaspr_router: ^0.5.1
-  js: ^0.6.7
   web: ^1.0.0
 
 dev_dependencies:

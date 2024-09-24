@@ -1,4 +1,8 @@
+import 'dart:js_interop';
+
 import 'package:jaspr/jaspr.dart';
+import 'package:web/web.dart';
+
 import '../core/utils/focus_component.dart';
 
 class Menu extends StatelessComponent {
@@ -33,7 +37,7 @@ class Box extends StatelessComponent {
   Iterable<Component> build(BuildContext context) sync* {
     yield FocusComponent(
       onTap: () {
-        print('Box $title tapped');
+        console.log('Box $title tapped'.toJS);
       },
       borderRadius: const BorderRadius.circular(
         Unit.pixels(20),
