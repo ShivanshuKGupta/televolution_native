@@ -56,13 +56,12 @@ class BubbleAnimation extends StatefulComponent {
 class BubbleAnimationState extends State<BubbleAnimation> {
   int count = 0;
   final List<Bubble> bubbles = [];
-  final fps = 15;
 
   @override
   void initState() {
     final windowHeight = window.innerHeight?.toDouble() ?? 100;
     final windowWidth = window.innerWidth?.toDouble() ?? 100;
-    for (int i = 0; i < 40; ++i) {
+    for (int i = 0; i < 60; ++i) {
       double height = math.Random().nextDouble() * (150 - 20) + 20;
       Color color = Bubble.colors[math.Random().nextInt(Bubble.colors.length)];
       double x = math.Random().nextDouble() * (windowWidth);
@@ -105,10 +104,6 @@ class BubbleAnimationState extends State<BubbleAnimation> {
 
   void moveBubble(num timeStamp) {
     final timeStampDiff = (timeStamp - previousTimeStamp) / 10;
-    if (timeStampDiff > 10 && previousTimeStamp != 0) {
-      /// If the system load is heavy, then the animation needs to stop
-      return;
-    }
     previousTimeStamp = timeStamp;
 
     for (Bubble bubble in bubbles) {
