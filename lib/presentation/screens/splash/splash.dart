@@ -11,7 +11,7 @@ class ScreensaverScreen extends StatelessComponent {
   @override
   Iterable<Component> build(BuildContext context) sync* {
 
-
+    // final splashProvider = context.watch(splashViewModelProvider);
 
     yield const BubbleAnimation();
 
@@ -24,7 +24,7 @@ class ScreensaverScreen extends StatelessComponent {
                 [
                   text(
                       '${time.hour}:${time.minute.toString().padLeft(2, '0')}'),
-                  text(splashProvider)
+                  // text(splashProvider)
                 ],
                 styles: const Styles.combine([
                   Styles.box(
