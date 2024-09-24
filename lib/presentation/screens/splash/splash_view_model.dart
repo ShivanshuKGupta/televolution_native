@@ -1,5 +1,7 @@
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
+import '../../../appwrite/appwrite.dart';
+import '../../../appwrite/realtime_stream.dart';
 import '../../../data/models/passenger_model.dart';
 
 class SplashViewModel extends StateNotifier<String> {
@@ -9,10 +11,11 @@ class SplashViewModel extends StateNotifier<String> {
     // Add your initialization logic here.
   }
 
-  List<Passenger> fetchPassengers() {
-    // Add your fetch logic here.
-    return [];
-  }
+  ModelStream<Passenger> passengerStream = ModelStream(
+    databaseId: AppwriteClient.dbId,
+    collectionId: AppwriteClient.passenger,
+    convert: Passenger.fromJson,
+  );
 }
 
 // Define a provider for the SplashViewModel

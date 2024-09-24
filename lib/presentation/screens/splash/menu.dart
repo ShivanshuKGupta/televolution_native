@@ -5,29 +5,42 @@ import 'package:jaspr/jaspr.dart';
 import 'package:web/web.dart';
 
 import '../../../core/utils/focus_component.dart';
-import '../../../data/models/passenger_model.dart';
+import 'splash_view_model.dart';
 
 class Menu extends StatelessComponent {
-  final List<Passenger> passenger;
-  const Menu({super.key, required this.passenger});
+  Menu({super.key});
+  final splashViewModel = SplashViewModel();
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    yield div(
-      [
-        const Box('1'),
-        const Box('2'),
-        const Box('3'),
-      ],
-      styles: const Styles.combine(
-        [
-          Styles.flexbox(
-            justifyContent: JustifyContent.center,
-            alignItems: AlignItems.center,
-            direction: FlexDirection.row,
+    yield StreamBuilder(
+      stream: splashViewModel.passengerStream.stream,
+      builder: (context, snapshot) sync* {
+        final passengers = snapshot.data;
+        if (passengers == null) {
+          yield const Loading();
+          return;
+        }
+
+        yield div(
+          [
+            ...passengers.map(
+              (passenger) {
+                return Box(passenger.fName);
+              },
+            )
+          ],
+          styles: const Styles.combine(
+            [
+              Styles.flexbox(
+                justifyContent: JustifyContent.center,
+                alignItems: AlignItems.center,
+                direction: FlexDirection.row,
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

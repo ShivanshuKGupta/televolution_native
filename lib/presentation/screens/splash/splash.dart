@@ -1,18 +1,14 @@
 import 'package:jaspr/jaspr.dart';
-import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
 import '../../../components/clock.dart';
 import '../../../pages/bubble_animation.dart';
 import 'menu.dart';
-import 'splash_view_model.dart';
 
 class ScreensaverScreen extends StatelessComponent {
   const ScreensaverScreen({super.key});
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    final splashViewModel = context.read(splashViewModelProvider.notifier);
-
     yield const BubbleAnimation();
 
     yield section(
@@ -109,10 +105,7 @@ class ScreensaverScreen extends StatelessComponent {
                       fontSize: Unit.pixels(35),
                       fontWeight: FontWeight.bold,
                       wordSpacing: Unit.pixels(1))),
-              Menu(
-                passenger: splashViewModel.fetchPassengers()
-              ),
-              
+              Menu(),
             ])
           ],
           styles: const Styles.combine([

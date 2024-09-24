@@ -1,4 +1,6 @@
+import 'appwrite/appwrite.dart';
 import 'appwrite/mustache.dart';
+import 'appwrite/realtime_stream.dart';
 import 'data/models/app_strings_model.dart';
 import 'data/models/passenger_model.dart';
 
@@ -34,18 +36,18 @@ Map<String, Mustache> get globalData => {
       'app_strings': appStrings,
     };
 
-// final ModelStream<AppStringsModel> _appStringsStreamSubscription =
-//     ModelStream<AppStringsModel>(
-//   databaseId: AppwriteClient.dbId,
-//   collectionId: AppwriteClient.appStrings,
-//   convert: (json) => AppStringsModel.fromJson(json),
-// )..stream.listen((data) {
-//         for (final element in data) {
-//           final id = element.data['id'] ?? '';
-//           final value = element.data['value'] ?? '';
-//           appStrings.data[id] = value;
-//         }
-//       });
+final ModelStream<AppStringsModel> _appStringsStreamSubscription =
+    ModelStream<AppStringsModel>(
+  databaseId: AppwriteClient.dbId,
+  collectionId: AppwriteClient.appStrings,
+  convert: (json) => AppStringsModel.fromJson(json),
+)..stream.listen((data) {
+        for (final element in data) {
+          final id = element.data['id'] ?? '';
+          final value = element.data['value'] ?? '';
+          appStrings.data[id] = value;
+        }
+      });
 
-// Stream<List<AppStringsModel>> get appStringsStream =>
-//     _appStringsStreamSubscription.stream;
+Stream<List<AppStringsModel>> get appStringsStream =>
+    _appStringsStreamSubscription.stream;
