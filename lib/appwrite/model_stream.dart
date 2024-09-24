@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'dart:js_interop';
+
+import 'package:web/web.dart';
 
 import 'appwrite.dart';
 import 'mustache.dart';
@@ -30,9 +33,8 @@ class ModelStream<S extends Mustache> {
     RawRealtimeService.addListener(realtimeChannel, _onData);
     final data = await AppwriteClient.database
         .listDocuments(databaseId: databaseId, collectionId: collectionId);
-    print('data: $data');
     _data = data.documents.map((doc) => convert(doc.data)).toList();
-    print('_data: $_data');
+    console.log('Intial data fetch for $collectionId: $_data'.toJS);
     _notifyListeners();
   }
 

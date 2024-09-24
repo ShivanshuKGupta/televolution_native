@@ -7,9 +7,21 @@ import 'package:web/web.dart';
 import '../../../core/utils/focus_component.dart';
 import 'splash_view_model.dart';
 
-class Menu extends StatelessComponent {
-  Menu({super.key});
+class Menu extends StatefulComponent {
+  const Menu({super.key});
+
+  @override
+  State<StatefulComponent> createState() => MenuState();
+}
+
+class MenuState extends State<Menu> {
   final splashViewModel = SplashViewModel();
+
+  @override
+  void dispose() {
+    splashViewModel.passengerStream.dispose();
+    super.dispose();
+  }
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
