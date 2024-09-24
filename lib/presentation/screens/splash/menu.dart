@@ -65,7 +65,7 @@ class Box extends StatelessComponent {
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    Unit commonUnit = const Unit.vh(10);
+    Unit commonUnit = const Unit.vh(8);
 
     yield FocusComponent(
       onTap: () {
@@ -77,7 +77,7 @@ class Box extends StatelessComponent {
       child: div(
         [
           h1(
-            [text(title)],
+            [text('${title[0]}${title[1]}'.toUpperCase())],
             styles: Styles.combine([
               Styles.background(
                   color: Color.rgb(
@@ -90,9 +90,9 @@ class Box extends StatelessComponent {
                     commonUnit,
                   )),
               Styles.text(
-                align: TextAlign.center,
-                lineHeight: commonUnit,
-              ),
+                  align: TextAlign.center,
+                  lineHeight: commonUnit,
+                  fontSize: const Unit.pixels(30)),
               Styles.box(
                 width: commonUnit,
                 height: commonUnit,
@@ -102,7 +102,7 @@ class Box extends StatelessComponent {
               ),
             ]),
           ),
-          h3([text('This is box $title.')]),
+          h3([text(title)]),
         ],
         styles: const Styles.box(
           radius: BorderRadius.all(
