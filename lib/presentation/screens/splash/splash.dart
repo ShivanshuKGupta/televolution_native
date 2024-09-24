@@ -105,7 +105,7 @@ class ScreensaverScreen extends StatelessComponent {
                       fontSize: Unit.pixels(35),
                       fontWeight: FontWeight.bold,
                       wordSpacing: Unit.pixels(1))),
-              Menu(),
+              const Menu(),
             ])
           ],
           styles: const Styles.combine([

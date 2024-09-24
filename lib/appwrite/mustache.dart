@@ -21,10 +21,8 @@ abstract class Mustache {
 }
 
 /// Interpolates a template string with values from a map.
-String interpolateString(
-  /// The template string to interpolate.
+String _interpolateString(
   String template, [
-  /// The values to interpolate.
   Map<String, dynamic>? values,
 ]) {
   values ??= globalData;
@@ -42,7 +40,19 @@ String interpolateString(
   });
 }
 
-/// Gets a value from a map using a property path.
+/// Gets a value from a [dataMap] using a [property] path. \
+/// If [dataMap] is null, then [globalData] will be used as [dataMap].
+///
+/// For example, if the [property] is `a.b.c` and the [dataMap] is
+/// ```
+/// {'a': {'b': {'c': 'value'}}}
+/// ```
+/// , the function will return string `value`. And if the [property] is `a.b`,
+/// the function will return a [dataMap]
+/// ```
+/// {'c': 'value'}
+/// ```
+/// and if the [property] is `a.b.c.d`, the function will return `null`.
 dynamic _getValue(String property, Map<String, dynamic> dataMap) {
   final List<String> parts = property.split('.');
   Map<String, dynamic> data = dataMap;
@@ -65,21 +75,33 @@ dynamic _getValue(String property, Map<String, dynamic> dataMap) {
   return data[parts.last];
 }
 
-extension MustacheExtension on String {
-  /// Interpolates the string using the global data.
-  String interpolate() => interpolateString(this);
+/// Interpolates the [data] object. \
+/// If the [data] is a [String], the function will interpolate the string. \
+/// If the [data] is a combined object like a [Map] or a [List], the function
+/// will recursively interpolate the object.
+T interpolateObject<T>(T data) {
+  if (data is String) {
+    return _interpolateString(data) as T;
+  } else if (data is Map<dynamic, dynamic>) {
+    final interpolatedData = <dynamic, dynamic>{};
+    data.forEach((key, value) {
+      interpolatedData[interpolateObject(key)] = interpolateObject(value);
+    });
+    return interpolatedData as T;
+  } else if (data is List) {
+    final interpolatedData = <dynamic>[];
+    data.forEach((value) {
+      interpolatedData.add(interpolateObject(value));
+    });
+    return interpolatedData as T;
+  }
+
+  return data;
 }
 
-Map<String, dynamic> interpolateMap(Map<String, dynamic> mapData) {
-  return mapData.map(
-    (key, value) {
-      if (value is String) {
-        return MapEntry(key, interpolateString(value));
-      }
-      if (value is Map<String, dynamic>) {
-        return MapEntry(key, interpolateMap(value));
-      }
-      return MapEntry(key, value);
-    },
-  );
+extension MustachExtension<T> on T {
+  /// Interpolates the object.
+  ///
+  /// Same as calling [interpolateObject] with the object.
+  T interpolate() => interpolateObject(this);
 }
