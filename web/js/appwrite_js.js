@@ -1,5 +1,6 @@
 const channels = [
     'databases.lite-db.collections.app_strings.documents',
+    'databases.lite-db.collections.Person.documents',
 ];
 
 const Appwrite = window.Appwrite;
