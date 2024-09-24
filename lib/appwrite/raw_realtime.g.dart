@@ -31,7 +31,15 @@ abstract class RawRealtimeService {
     RealtimeChannel realtimeChannel,
     RealtimeListener callback,
   ) {
-    _listeners[realtimeChannel.channel] ??= [];
+    if (_listeners[realtimeChannel.channel] == null) {
+      _listeners[realtimeChannel.channel] ??= [];
+      window.dispatchEvent(
+        CustomEvent(
+          'realtime_subscribe',
+          CustomEventInit(detail: [realtimeChannel.channel].jsify()),
+        ),
+      );
+    }
     _listeners[realtimeChannel.channel]!.add(callback);
   }
 
@@ -42,6 +50,12 @@ abstract class RawRealtimeService {
   ) {
     _listeners[realtimeChannel.channel]?.remove(callback);
     if (_listeners[realtimeChannel.channel]?.isEmpty == true) {
+      window.dispatchEvent(
+        CustomEvent(
+          'realtime_unsubscribe',
+          CustomEventInit(detail: [realtimeChannel.channel].jsify()),
+        ),
+      );
       _listeners.remove(realtimeChannel.channel);
     }
   }

@@ -1,7 +1,7 @@
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
 import '../../../appwrite/appwrite.dart';
-import '../../../appwrite/realtime_stream.dart';
+import '../../../appwrite/model_stream.dart';
 import '../../../data/models/passenger_model.dart';
 
 class SplashViewModel extends StateNotifier<String> {

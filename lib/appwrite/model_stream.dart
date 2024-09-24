@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'dart:js_interop';
+
+import 'package:web/web.dart';
 
 import 'appwrite.dart';
 import 'mustache.dart';
@@ -31,6 +34,7 @@ class ModelStream<S extends Mustache> {
     final data = await AppwriteClient.database
         .listDocuments(databaseId: databaseId, collectionId: collectionId);
     _data = data.documents.map((doc) => convert(doc.data)).toList();
+    console.log('Intial data fetch for $collectionId: $_data'.toJS);
     _notifyListeners();
   }
 
