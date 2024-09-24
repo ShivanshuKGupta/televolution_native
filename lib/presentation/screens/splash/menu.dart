@@ -4,10 +4,12 @@ import 'dart:math';
 import 'package:jaspr/jaspr.dart';
 import 'package:web/web.dart';
 
-import '../core/utils/focus_component.dart';
+import '../../../core/utils/focus_component.dart';
+import '../../../data/models/passenger_model.dart';
 
 class Menu extends StatelessComponent {
-  const Menu({super.key});
+  final List<Passenger> passenger;
+  const Menu({super.key, required this.passenger});
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
@@ -38,6 +40,8 @@ class Box extends StatelessComponent {
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
+    Unit commonUnit = const Unit.vh(10);
+
     yield FocusComponent(
       onTap: () {
         console.log('Box $title tapped'.toJS);
@@ -51,16 +55,25 @@ class Box extends StatelessComponent {
             [text(title)],
             styles: Styles.combine([
               Styles.background(
-                color: Color.rgb(
-                  random.nextInt(255),
-                  random.nextInt(255),
-                  random.nextInt(255),
-                ),
+                  color: Color.rgb(
+                    random.nextInt(255),
+                    random.nextInt(255),
+                    random.nextInt(255),
+                  ),
+                  size: BackgroundSize.sides(
+                    commonUnit,
+                    commonUnit,
+                  )),
+              Styles.text(
+                align: TextAlign.center,
+                lineHeight: commonUnit,
               ),
-              const Styles.box(
-                width: Unit.vh(10),
-                height: Unit.vh(10),
-                radius: BorderRadius.circular(Unit.percent(50)),
+              Styles.box(
+                width: commonUnit,
+                height: commonUnit,
+                radius: const BorderRadius.circular(
+                  Unit.percent(50),
+                ),
               ),
             ]),
           ),

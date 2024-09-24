@@ -2,8 +2,8 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
 import '../../../components/clock.dart';
-import '../../../components/menu.dart';
 import '../../../pages/bubble_animation.dart';
+import 'menu.dart';
 import 'splash_view_model.dart';
 
 class ScreensaverScreen extends StatelessComponent {
@@ -109,7 +109,10 @@ class ScreensaverScreen extends StatelessComponent {
                       fontSize: Unit.pixels(35),
                       fontWeight: FontWeight.bold,
                       wordSpacing: Unit.pixels(1))),
-              const Menu(),
+              Menu(
+                passenger: splashViewModel.fetchPassengers()
+              ),
+              
             ])
           ],
           styles: const Styles.combine([
