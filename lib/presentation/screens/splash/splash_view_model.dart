@@ -1,4 +1,5 @@
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
+
 class SplashViewModel extends StateNotifier {
   SplashViewModel() : super('');
 
@@ -6,5 +7,6 @@ class SplashViewModel extends StateNotifier {
     // Add your initialization logic here.
   }
 
-  final splashViewModelProvider = StateNotifierProvider((ref) => SplashViewModel());
+  final splashViewModelProvider =
+      StateNotifierProvider((ref) => SplashViewModel());
 }
