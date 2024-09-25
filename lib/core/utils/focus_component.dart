@@ -29,6 +29,7 @@ class FocusComponent extends StatelessComponent {
           <style>
             .focusable {
               outline: none;
+              border: ${focusedBorderWidth}px solid transparent;
               border-radius: ${borderRadius?.styles.values.first ?? '0px'};
             }
             .focusable:focus { 

@@ -18,21 +18,17 @@ class ScreensaverScreen extends StatelessComponent {
             ClockComponent(builder: (context, time) {
               return h2(
                 [
-                  text(
-                      '${time.hour}:${time.minute.toString().padLeft(2, '0')}'),
+                  text('${time.hour}:${time.minute.toString().padLeft(2, '0')}')
                 ],
                 styles: const Styles.combine([
                   Styles.box(
-                    margin: EdgeInsets.zero,
-                    padding: EdgeInsets.only(top: Unit.pixels(0)),
-                    position: Position.absolute(
-                      top: Unit.pixels(10),
-                      right: Unit.pixels(10),
-                    ),
-                  ),
-                  Styles.text(
-                    fontSize: Unit.pixels(30),
-                  ),
+                      margin: EdgeInsets.zero,
+                      padding: EdgeInsets.only(top: Unit.pixels(0)),
+                      position: Position.absolute(
+                        top: Unit.pixels(10),
+                        right: Unit.pixels(10),
+                      )),
+                  Styles.text(fontSize: Unit.pixels(30)),
                 ]),
               );
             }),
@@ -42,9 +38,8 @@ class ScreensaverScreen extends StatelessComponent {
                   src:
                       'https://mytvpocroyal.com/web/assets/assets/images/logo.png',
                   width: 150,
-                  styles: const Styles.raw({
-                    'filter': 'brightness(0) invert(1)',
-                  }),
+                  styles:
+                      const Styles.raw({'filter': 'brightness(0) invert(1)'}),
                 ),
                 h2([text('Welcome to the Stateroom Landon Byron')],
                     styles: const Styles.combine([
@@ -90,23 +85,25 @@ class ScreensaverScreen extends StatelessComponent {
                   justifyContent: JustifyContent.center,
                   alignItems: AlignItems.center,
                 ),
-                Styles.raw({'z-index': '1', 'pointer-events': 'none'})
+                Styles.raw({'pointer-events': 'none'})
               ]),
             ),
-            div([
-              div([
-                text(
-                  'Who\'s Watching?',
-                ),
+            div(
+              [
+                div([
+                  text(
+                    'Who\'s Watching?',
+                  ),
+                ],
+                    styles: const Styles.text(
+                        align: TextAlign.center,
+                        color: Colors.white,
+                        fontSize: Unit.pixels(35),
+                        fontWeight: FontWeight.bold,
+                        wordSpacing: Unit.pixels(1))),
+                const Menu(),
               ],
-                  styles: const Styles.text(
-                      align: TextAlign.center,
-                      color: Colors.white,
-                      fontSize: Unit.pixels(35),
-                      fontWeight: FontWeight.bold,
-                      wordSpacing: Unit.pixels(1))),
-              const Menu(),
-            ])
+            )
           ],
           styles: const Styles.combine([
             Styles.box(

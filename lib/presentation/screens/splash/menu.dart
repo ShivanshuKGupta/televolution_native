@@ -104,14 +104,21 @@ class Box extends StatelessComponent {
           ),
           h3([text(title)]),
         ],
-        styles: const Styles.box(
-          radius: BorderRadius.all(
-            Radius.circular(
-              Unit.pixels(20),
+        styles: const Styles.combine([
+          Styles.box(
+            radius: BorderRadius.all(
+              Radius.circular(
+                Unit.pixels(20),
+              ),
             ),
+            padding: EdgeInsets.all(Unit.pixels(20)),
           ),
-          padding: EdgeInsets.all(Unit.pixels(20)),
-        ),
+          Styles.flexbox(
+            justifyContent: JustifyContent.center,
+            alignItems: AlignItems.center,
+            direction: FlexDirection.column,
+          ),
+        ]),
       ),
     );
   }
