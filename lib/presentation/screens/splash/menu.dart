@@ -1,9 +1,9 @@
-import 'dart:js_interop';
 import 'dart:math';
 
 import 'package:jaspr/jaspr.dart';
-import 'package:web/web.dart';
+import 'package:jaspr_router/jaspr_router.dart';
 
+import '../../../app/routes.dart';
 import '../../../core/utils/focus_component.dart';
 import 'splash_view_model.dart';
 
@@ -84,7 +84,7 @@ class Box extends StatelessComponent {
 
     yield FocusComponent(
       onTap: () {
-        console.log('Box $title tapped'.toJS);
+        Router.of(context).push(AppRoutes.home);
       },
       borderRadius: const BorderRadius.circular(
         Unit.pixels(20),
