@@ -103,7 +103,7 @@ class BubbleAnimationState extends State<BubbleAnimation> {
   num previousTimeStamp = 0;
 
   void moveBubble(num timeStamp) {
-    final timeStampDiff = (timeStamp - previousTimeStamp) / 20;
+    final timeStampDiff = (timeStamp - previousTimeStamp) / 5;
     previousTimeStamp = timeStamp;
 
     for (Bubble bubble in bubbles) {
@@ -118,9 +118,9 @@ class BubbleAnimationState extends State<BubbleAnimation> {
       left += bubble.dx * timeStampDiff;
       top += bubble.dy * timeStampDiff;
 
-      if (left < 0 - width * 2) left = windowWidth + width;
+      if (left < 0 - width) left = windowWidth + width;
       if (left - width > windowWidth) left = 0 - width;
-      if (top < 0 - height * 2) top = windowHeight + height;
+      if (top < 0 - height) top = windowHeight + height;
       if (top - height > windowHeight) top = 0 - height;
 
       bubble.x = left;

@@ -30,7 +30,22 @@ class MenuState extends State<Menu> {
       builder: (context, snapshot) sync* {
         final passengers = snapshot.data;
         if (passengers == null) {
-          yield text('Loading...');
+          yield img(
+            src: 'images/spinner.gif',
+            classes: 'align-center',
+            styles: const Styles.combine(
+              [
+                Styles.box(
+                  width: Unit.vw(4),
+                  height: Unit.vw(4),
+                  position: Position.absolute(
+                    left: Unit.percent(50),
+                    bottom: Unit.pixels(20),
+                  ),
+                ),
+              ],
+            ),
+          );
           return;
         }
 
