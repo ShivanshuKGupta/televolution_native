@@ -58,10 +58,10 @@ class HomeScreenState extends State<HomeScreen> {
           stream: modelStream.stream,
           builder: (context, snapshot) sync* {
             if (snapshot.hasData) {
-              final List<ModulesActivationModel> model = snapshot.data!;
+              final List<ModulesActivationModel> data = snapshot.data!;
               yield div(
                 [
-                  for (final item in model)
+                  for (final item in data)
                     FocusComponent(
                       children: [
                         const Icon(Icons.add),
@@ -73,12 +73,11 @@ class HomeScreenState extends State<HomeScreen> {
                       onTap: () {
                         console.log('Tapped on ${item.title}'.toJS);
                       },
-                      classes:
-                          'p-1 pt-4 pb-4 flex flex-col items-center w-${100 ~/ model.length}%',
+                      classes: 'p-1 pt-4 pb-4 flex flex-col items-center',
                     ),
                 ],
                 classes:
-                    'flex flex-wrap justify-between p-2 bg-black bg-opacity-50 text-white rounded-full',
+                    'grid grid-cols-5 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
               );
               return;
             } else if (snapshot.hasError) {
