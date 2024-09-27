@@ -89,52 +89,54 @@ class Box extends StatelessComponent {
       borderRadius: const BorderRadius.circular(
         Unit.pixels(20),
       ),
-      child: div(
-        [
-          h1(
-            [text('${title[0]}${title[1]}'.toUpperCase())],
-            styles: Styles.combine([
-              Styles.background(
-                  color: Color.rgb(
-                    random.nextInt(255),
-                    random.nextInt(255),
-                    random.nextInt(255),
+      children: [
+        div(
+          [
+            h1(
+              [text('${title[0]}${title[1]}'.toUpperCase())],
+              styles: Styles.combine([
+                Styles.background(
+                    color: Color.rgb(
+                      random.nextInt(255),
+                      random.nextInt(255),
+                      random.nextInt(255),
+                    ),
+                    size: BackgroundSize.sides(
+                      commonUnit,
+                      commonUnit,
+                    )),
+                Styles.text(
+                    align: TextAlign.center,
+                    lineHeight: commonUnit,
+                    fontSize: const Unit.pixels(30)),
+                Styles.box(
+                  width: commonUnit,
+                  height: commonUnit,
+                  radius: const BorderRadius.circular(
+                    Unit.percent(50),
                   ),
-                  size: BackgroundSize.sides(
-                    commonUnit,
-                    commonUnit,
-                  )),
-              Styles.text(
-                  align: TextAlign.center,
-                  lineHeight: commonUnit,
-                  fontSize: const Unit.pixels(30)),
-              Styles.box(
-                width: commonUnit,
-                height: commonUnit,
-                radius: const BorderRadius.circular(
-                  Unit.percent(50),
+                ),
+              ]),
+            ),
+            h3([text(title)]),
+          ],
+          styles: const Styles.combine([
+            Styles.box(
+              radius: BorderRadius.all(
+                Radius.circular(
+                  Unit.pixels(20),
                 ),
               ),
-            ]),
-          ),
-          h3([text(title)]),
-        ],
-        styles: const Styles.combine([
-          Styles.box(
-            radius: BorderRadius.all(
-              Radius.circular(
-                Unit.pixels(20),
-              ),
+              padding: EdgeInsets.all(Unit.pixels(20)),
             ),
-            padding: EdgeInsets.all(Unit.pixels(20)),
-          ),
-          Styles.flexbox(
-            justifyContent: JustifyContent.center,
-            alignItems: AlignItems.center,
-            direction: FlexDirection.column,
-          ),
-        ]),
-      ),
+            Styles.flexbox(
+              justifyContent: JustifyContent.center,
+              alignItems: AlignItems.center,
+              direction: FlexDirection.column,
+            ),
+          ]),
+        ),
+      ],
     );
   }
 }

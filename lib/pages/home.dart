@@ -7,6 +7,8 @@ import '../appwrite/appwrite.dart';
 import '../appwrite/model_stream.dart';
 import '../core/utils/focus_component.dart';
 import '../data/models/modules_activation.dart';
+import '../material_icons/icon.dart';
+import '../material_icons/icons.dart';
 
 class HomeScreen extends StatefulComponent {
   const HomeScreen({super.key});
@@ -49,30 +51,46 @@ class HomeScreenState extends State<HomeScreen> {
       ),
     );
 
-    yield div([
-      StreamBuilder(
-        stream: modelStream.stream,
-        builder: (context, snapshot) sync* {
-          if (snapshot.hasData) {
-            final List<ModulesActivationModel> model = snapshot.data!;
-            yield div([
-              for (final item in model)
-                FocusComponent(
-                  child: text(item.title),
-                  onTap: () {
-                    console.log('Tapped on ${item.title}'.toJS);
-                  },
-                ),
-            ]);
+    yield div(
+      [
+        text('Home Screen'),
+        StreamBuilder(
+          stream: modelStream.stream,
+          builder: (context, snapshot) sync* {
+            if (snapshot.hasData) {
+              final List<ModulesActivationModel> model = snapshot.data!;
+              yield div(
+                [
+                  for (final item in model)
+                    FocusComponent(
+                      children: [
+                        const Icon(Icons.add),
+                        text(item.title),
+                      ],
+                      borderRadius: const BorderRadius.circular(
+                        Unit.pixels(100),
+                      ),
+                      onTap: () {
+                        console.log('Tapped on ${item.title}'.toJS);
+                      },
+                      classes:
+                          'p-1 pt-4 pb-4 flex flex-col items-center w-${100 ~/ model.length}%',
+                    ),
+                ],
+                classes:
+                    'flex flex-wrap justify-between p-2 bg-black bg-opacity-50 text-white rounded-full',
+              );
+              return;
+            } else if (snapshot.hasError) {
+              yield text('Error: ${snapshot.error}');
+              return;
+            }
+            yield text('Loading...');
             return;
-          } else if (snapshot.hasError) {
-            yield text('Error: ${snapshot.error}');
-            return;
-          }
-          yield text('Loading...');
-          return;
-        },
-      ),
-    ]);
+          },
+        ),
+      ],
+      classes: 'flex flex-col justify-between h-screen',
+    );
   }
 }
