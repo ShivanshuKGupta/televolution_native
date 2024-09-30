@@ -88,12 +88,14 @@ class ScreensaverScreen extends StatelessComponent {
                 Styles.raw({'pointer-events': 'none'})
               ]),
             ),
-            const Menu(),
-            // div(
-            //   [
-            //     const Menu(),
-            //   ],
-            // )
+            div([
+              const Menu(),
+            ],
+                classes: 'pb-10 ',
+                styles: const Styles.flexbox(
+                  wrap: FlexWrap.wrap,
+                  justifyContent: JustifyContent.center,
+                )),
           ],
           styles: const Styles.combine([
             Styles.box(
@@ -108,6 +110,7 @@ class ScreensaverScreen extends StatelessComponent {
             Styles.flexbox(
               direction: FlexDirection.column,
               justifyContent: JustifyContent.spaceBetween,
+              wrap: FlexWrap.wrap,
             ),
           ]),
         ),

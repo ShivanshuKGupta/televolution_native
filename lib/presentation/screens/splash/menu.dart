@@ -48,40 +48,43 @@ class MenuState extends State<Menu> {
           );
           return;
         }
-        yield div([
-          div(
-            [
-              text(
-                'Who\'s Watching?',
-              ),
-            ],
-            styles: const Styles.text(
-              align: TextAlign.center,
-              color: Colors.white,
-              fontSize: Unit.pixels(35),
-              fontWeight: FontWeight.bold,
-              wordSpacing: Unit.pixels(1),
-            ),
-          ),
-          div(
-            [
-              ...passengers.map(
-                (passenger) {
-                  return Box(passenger.fName);
-                },
-              )
-            ],
-            styles: const Styles.combine(
+        yield div(
+          [
+            div(
               [
-                Styles.flexbox(
-                  justifyContent: JustifyContent.center,
-                  alignItems: AlignItems.center,
-                  direction: FlexDirection.row,
+                text(
+                  'Who\'s Watching?',
                 ),
               ],
+              styles: const Styles.text(
+                align: TextAlign.center,
+                color: Colors.white,
+                fontSize: Unit.pixels(35),
+                fontWeight: FontWeight.bold,
+                wordSpacing: Unit.pixels(1),
+              ),
             ),
-          )
-        ]);
+            div(
+              [
+                ...passengers.map(
+                  (passenger) {
+                    return Box(passenger.fName);
+                  },
+                )
+              ],
+              styles: const Styles.combine(
+                [
+                  Styles.flexbox(
+                    justifyContent: JustifyContent.center,
+                    alignItems: AlignItems.center,
+                    direction: FlexDirection.row,
+                  ),
+                ],
+              ),
+            )
+          ],
+          classes: 'p-8 bg-black bg-opacity-20 rounded-[20px]',
+        );
       },
     );
   }
@@ -109,47 +112,52 @@ class Box extends StatelessComponent {
           [
             h1(
               [text('${title[0]}${title[1]}'.toUpperCase())],
-              styles: Styles.combine([
-                Styles.background(
-                    color: Color.rgb(
-                      random.nextInt(255),
-                      random.nextInt(255),
-                      random.nextInt(255),
+              styles: Styles.combine(
+                [
+                  Styles.background(
+                      color: Color.rgb(
+                        random.nextInt(255),
+                        random.nextInt(255),
+                        random.nextInt(255),
+                      ),
+                      size: BackgroundSize.sides(
+                        commonUnit,
+                        commonUnit,
+                      )),
+                  Styles.text(
+                      align: TextAlign.center,
+                      lineHeight: commonUnit,
+                      fontSize: const Unit.pixels(30)),
+                  Styles.box(
+                    width: commonUnit,
+                    height: commonUnit,
+                    radius: const BorderRadius.circular(
+                      Unit.percent(50),
                     ),
-                    size: BackgroundSize.sides(
-                      commonUnit,
-                      commonUnit,
-                    )),
-                Styles.text(
-                    align: TextAlign.center,
-                    lineHeight: commonUnit,
-                    fontSize: const Unit.pixels(30)),
-                Styles.box(
-                  width: commonUnit,
-                  height: commonUnit,
-                  radius: const BorderRadius.circular(
-                    Unit.percent(50),
                   ),
-                ),
-              ]),
+                ],
+              ),
+              classes: 'border-4 border-white',
             ),
             h3([text(title)]),
           ],
-          styles: const Styles.combine([
-            Styles.box(
-              radius: BorderRadius.all(
-                Radius.circular(
-                  Unit.pixels(20),
+          styles: const Styles.combine(
+            [
+              Styles.box(
+                radius: BorderRadius.all(
+                  Radius.circular(
+                    Unit.pixels(20),
+                  ),
                 ),
+                padding: EdgeInsets.all(Unit.pixels(20)),
               ),
-              padding: EdgeInsets.all(Unit.pixels(20)),
-            ),
-            Styles.flexbox(
-              justifyContent: JustifyContent.center,
-              alignItems: AlignItems.center,
-              direction: FlexDirection.column,
-            ),
-          ]),
+              Styles.flexbox(
+                justifyContent: JustifyContent.center,
+                alignItems: AlignItems.center,
+                direction: FlexDirection.column,
+              ),
+            ],
+          ),
         ),
       ],
     );
