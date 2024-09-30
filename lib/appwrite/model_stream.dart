@@ -50,11 +50,19 @@ class ModelStream<S extends Mustache> {
 
   void _onData(RealtimePayload data) {
     final changedS = convert(data.payload);
+    final deleted = data.events.fold(
+      false,
+      (previousValue, element) => previousValue || element.contains('delete'),
+    );
     final index = _data.indexWhere((element) => element.$id == changedS.$id);
     if (index == -1) {
       _data.add(changedS);
     } else {
-      _data[index] = changedS;
+      if (deleted) {
+        _data.removeAt(index);
+      } else {
+        _data[index] = changedS;
+      }
     }
     _notifyListeners();
   }
