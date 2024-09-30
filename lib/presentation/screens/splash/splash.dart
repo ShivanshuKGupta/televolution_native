@@ -1,7 +1,6 @@
 import 'package:jaspr/jaspr.dart';
 
 import '../../../components/clock.dart';
-import '../../../pages/bubble_animation.dart';
 import 'menu.dart';
 
 class ScreensaverScreen extends StatelessComponent {
@@ -9,7 +8,7 @@ class ScreensaverScreen extends StatelessComponent {
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    yield const BubbleAnimation();
+    // yield const BubbleAnimation();
 
     yield section(
       [
