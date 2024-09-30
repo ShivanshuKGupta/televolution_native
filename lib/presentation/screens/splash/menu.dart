@@ -56,6 +56,7 @@ class MenuState extends State<Menu> {
                   'Who\'s Watching?',
                 ),
               ],
+              classes: 'pb-2',
               styles: const Styles.text(
                 align: TextAlign.center,
                 color: Colors.white,
