@@ -56,7 +56,7 @@ class MenuState extends State<Menu> {
                   'Who\'s Watching?',
                 ),
               ],
-              classes: 'pb-2',
+              classes: 'pb-3',
               styles: const Styles.text(
                 align: TextAlign.center,
                 color: Colors.white,
@@ -79,12 +79,13 @@ class MenuState extends State<Menu> {
                     justifyContent: JustifyContent.center,
                     alignItems: AlignItems.center,
                     direction: FlexDirection.row,
+                    wrap: FlexWrap.wrap,
                   ),
                 ],
               ),
             )
           ],
-          classes: 'p-8 bg-black bg-opacity-20 rounded-[20px]',
+          classes: 'bg-black bg-opacity-20 rounded-[20px]',
         );
       },
     );
