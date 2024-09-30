@@ -1,23 +1,35 @@
+const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
 extension SlashString on DateTime {
-  String toMonthString() {
-    final months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec'
+  String get monthString => '$day ${months[month - 1]} $year';
+
+  String get dayString {
+    final days = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
     ];
-    return '$day ${months[month - 1]} $year';
+    return '${days[weekday - 1]}, ${months[month - 1]} $day';
   }
 
-  String getTime() {
+  String get time {
     final localTime = toLocal();
     return "${localTime.hour.toString().padLeft(2, '0')}:${localTime.minute.toString().padLeft(2, '0')}";
   }
@@ -29,11 +41,7 @@ extension SlashString on DateTime {
     return "$hourIn12:${localTime.minute.toString().padLeft(2, '0')} $ampm";
   }
 
-  String get time {
-    return '$hour:$minute';
-  }
-
-  String timeAgo() {
+  String get timeAgo {
     final now = DateTime.now();
     final difference = now.difference(this);
     if (difference.inDays > 0) {

@@ -5,6 +5,8 @@ import 'package:web/web.dart';
 
 import '../appwrite/appwrite.dart';
 import '../appwrite/model_stream.dart';
+import '../components/clock.dart';
+import '../core/utils/datetime_extensions.dart';
 import '../core/utils/focus_component.dart';
 import '../data/models/modules_activation.dart';
 import '../material_icons/icon.dart';
@@ -53,7 +55,27 @@ class HomeScreenState extends State<HomeScreen> {
 
     yield div(
       [
-        text('Home Screen'),
+        div(
+          [
+            img(
+              src: 'https://mytvpocroyal.com/web/assets/assets/images/logo.png',
+              width: 150,
+              styles: const Styles.raw({'filter': 'brightness(0) invert(1)'}),
+            ),
+            ClockComponent(builder: (context, dateTime) {
+              return div(
+                [
+                  div([text(dateTime.time)], classes: 'text-3xl font-bold'),
+                  div([text(dateTime.dayString)], classes: 'text-l font-bold'),
+                ],
+                classes:
+                    'text-white text-center flex flex-col justify-center h-full',
+              );
+            })
+          ],
+          classes:
+              'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
+        ),
         StreamBuilder(
           stream: modelStream.stream,
           builder: (context, snapshot) {
@@ -74,11 +96,12 @@ class HomeScreenState extends State<HomeScreen> {
                         onTap: () {
                           console.log('Tapped on ${item.title}'.toJS);
                         },
-                        classes: 'p-1 pt-4 pb-4 flex flex-col items-center',
+                        classes:
+                            'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
                       ),
                   ],
                   classes:
-                      'grid grid-cols-10 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
+                      'grid grid-cols-8 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
                 )
               ];
             } else if (snapshot.hasError) {
