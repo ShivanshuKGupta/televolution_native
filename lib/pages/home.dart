@@ -56,36 +56,35 @@ class HomeScreenState extends State<HomeScreen> {
         text('Home Screen'),
         StreamBuilder(
           stream: modelStream.stream,
-          builder: (context, snapshot) sync* {
+          builder: (context, snapshot) {
             if (snapshot.hasData) {
               final List<ModulesActivationModel> data = snapshot.data!;
-              yield div(
-                [
-                  for (final item in data)
-                    FocusComponent(
-                      children: [
-                        const Icon(Icons.add),
-                        text(item.title),
-                      ],
-                      borderRadius: const BorderRadius.circular(
-                        Unit.pixels(100),
+              return [
+                div(
+                  [
+                    for (final item in data)
+                      FocusComponent(
+                        children: [
+                          const Icon(Icons.add),
+                          text(item.title),
+                        ],
+                        borderRadius: const BorderRadius.circular(
+                          Unit.pixels(100),
+                        ),
+                        onTap: () {
+                          console.log('Tapped on ${item.title}'.toJS);
+                        },
+                        classes: 'p-1 pt-4 pb-4 flex flex-col items-center',
                       ),
-                      onTap: () {
-                        console.log('Tapped on ${item.title}'.toJS);
-                      },
-                      classes: 'p-1 pt-4 pb-4 flex flex-col items-center',
-                    ),
-                ],
-                classes:
-                    'grid grid-cols-5 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
-              );
-              return;
+                  ],
+                  classes:
+                      'grid grid-cols-5 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
+                )
+              ];
             } else if (snapshot.hasError) {
-              yield text('Error: ${snapshot.error}');
-              return;
+              return [text('Error: ${snapshot.error}')];
             }
-            yield text('Loading...');
-            return;
+            return [text('Loading...')];
           },
         ),
       ],

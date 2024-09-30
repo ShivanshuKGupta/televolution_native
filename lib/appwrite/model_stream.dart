@@ -3,6 +3,7 @@ import 'dart:js_interop';
 
 import 'package:web/web.dart';
 
+import '../core/services/retry.dart';
 import 'appwrite.dart';
 import 'mustache.dart';
 import 'realtime_models.dart';
@@ -31,8 +32,8 @@ class ModelStream<S extends Mustache> {
 
   void _startStream() async {
     RawRealtimeService.addListener(realtimeChannel, _onData);
-    final data = await AppwriteClient.database
-        .listDocuments(databaseId: databaseId, collectionId: collectionId);
+    final data = await retry(() => AppwriteClient.database
+        .listDocuments(databaseId: databaseId, collectionId: collectionId));
     _data = data.documents.map((doc) => convert(doc.data)).toList();
     console.log('Intial data fetch for $collectionId: $_data'.toJS);
     _notifyListeners();
