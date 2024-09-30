@@ -48,25 +48,40 @@ class MenuState extends State<Menu> {
           );
           return;
         }
-
-        yield div(
-          [
-            ...passengers.map(
-              (passenger) {
-                return Box(passenger.fName);
-              },
-            )
-          ],
-          styles: const Styles.combine(
+        yield div([
+          div(
             [
-              Styles.flexbox(
-                justifyContent: JustifyContent.center,
-                alignItems: AlignItems.center,
-                direction: FlexDirection.row,
+              text(
+                'Who\'s Watching?',
               ),
             ],
+            styles: const Styles.text(
+              align: TextAlign.center,
+              color: Colors.white,
+              fontSize: Unit.pixels(35),
+              fontWeight: FontWeight.bold,
+              wordSpacing: Unit.pixels(1),
+            ),
           ),
-        );
+          div(
+            [
+              ...passengers.map(
+                (passenger) {
+                  return Box(passenger.fName);
+                },
+              )
+            ],
+            styles: const Styles.combine(
+              [
+                Styles.flexbox(
+                  justifyContent: JustifyContent.center,
+                  alignItems: AlignItems.center,
+                  direction: FlexDirection.row,
+                ),
+              ],
+            ),
+          )
+        ]);
       },
     );
   }

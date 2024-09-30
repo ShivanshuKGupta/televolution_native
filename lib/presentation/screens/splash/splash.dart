@@ -3,6 +3,7 @@ import 'package:jaspr/jaspr.dart';
 import '../../../components/clock.dart';
 import '../../../pages/bubble_animation.dart';
 import 'menu.dart';
+import 'splash_view_model.dart';
 
 class ScreensaverScreen extends StatelessComponent {
   const ScreensaverScreen({super.key});
@@ -88,22 +89,12 @@ class ScreensaverScreen extends StatelessComponent {
                 Styles.raw({'pointer-events': 'none'})
               ]),
             ),
-            div(
-              [
-                div([
-                  text(
-                    'Who\'s Watching?',
-                  ),
-                ],
-                    styles: const Styles.text(
-                        align: TextAlign.center,
-                        color: Colors.white,
-                        fontSize: Unit.pixels(35),
-                        fontWeight: FontWeight.bold,
-                        wordSpacing: Unit.pixels(1))),
-                const Menu(),
-              ],
-            )
+            const Menu(),
+            // div(
+            //   [
+            //     const Menu(),
+            //   ],
+            // )
           ],
           styles: const Styles.combine([
             Styles.box(
