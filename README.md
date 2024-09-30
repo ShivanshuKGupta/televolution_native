@@ -17,7 +17,7 @@ The output will be located inside the `build/jaspr/` directory.
 # Project structure
 ## This is the project structure
 
-
+```
 lib/
 ├── core/                  // Core functionalities shared across the app
 │   ├── errors/            // Error handling (Failure classes)
@@ -54,3 +54,4 @@ lib/
 │   └── app.dart           // App entry point and ProviderScope setup
 │
 ├── main.dart              // Main app entry point
+```
