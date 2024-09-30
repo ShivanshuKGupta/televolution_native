@@ -55,6 +55,7 @@ class BubbleAnimation extends StatefulComponent {
 
 class BubbleAnimationState extends State<BubbleAnimation> {
   int count = 0;
+  int id = -1;
   final List<Bubble> bubbles = [];
 
   @override
@@ -74,8 +75,15 @@ class BubbleAnimationState extends State<BubbleAnimation> {
       bubbles.add(Bubble(x, y, color, height, speedX, speedY));
     }
 
-    window.requestAnimationFrame(moveBubble);
+    id = window.requestAnimationFrame(moveBubble);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    bubbles.clear();
+    window.cancelAnimationFrame(id);
+    super.dispose();
   }
 
   @override
