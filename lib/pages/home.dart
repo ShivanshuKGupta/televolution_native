@@ -78,7 +78,7 @@ class HomeScreenState extends State<HomeScreen> {
                       ),
                   ],
                   classes:
-                      'grid grid-cols-5 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
+                      'grid grid-cols-10 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
                 )
               ];
             } else if (snapshot.hasError) {
