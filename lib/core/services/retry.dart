@@ -8,7 +8,7 @@ Future<T> retry<T>(
   int retries = -1,
 
   /// Maximum delay between retries in seconds.
-  int maxDelay = 60,
+  int maxDelay = 5,
 }) async {
   var count = 0;
   while (true) {

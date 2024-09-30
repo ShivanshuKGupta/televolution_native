@@ -3,7 +3,6 @@ import 'package:jaspr/jaspr.dart';
 import '../../../components/clock.dart';
 import '../../../pages/bubble_animation.dart';
 import 'menu.dart';
-import 'splash_view_model.dart';
 
 class ScreensaverScreen extends StatelessComponent {
   const ScreensaverScreen({super.key});
