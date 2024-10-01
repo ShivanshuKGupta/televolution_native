@@ -125,6 +125,9 @@ function handleArrowNavigation(event) {
         case '461':
             window.history.back();
             break;
+        case '0x1CD':
+            window.history.back();
+            break;
         case 'Enter':
             const clickEvent = new Event('click');
             currentElement.dispatchEvent(clickEvent);
