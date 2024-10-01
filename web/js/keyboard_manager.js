@@ -71,6 +71,7 @@ function handleArrowNavigation(event) {
             break;
         default:
             console.log('Unhandled key:', event.key);
+            window.alert('Unhandled key: ' + event.key);
             break;
     }
 
