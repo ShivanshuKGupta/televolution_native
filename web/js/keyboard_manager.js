@@ -45,7 +45,64 @@ function findClosestElement(current, direction) {
 }
 
 // Handle arrow key navigation based on spatial arrangement
+// function handleArrowNavigation(event) {
+//     const currentElement = document.activeElement;
+//     if (!currentElement || !currentElement.classList.contains('focusable')) {
+//         document.querySelector('.focusable').focus();
+//         return;
+//     }
+
+//     switch (event.key) {
+//         case 'ArrowDown':
+//         case 'ArrowRight':
+//         case 'ArrowUp':
+//         case 'ArrowLeft':
+//             const closestElement = findClosestElement(currentElement, event.key);
+//             if (closestElement) {
+//                 closestElement.focus();
+//             }
+//             break;
+//         case 'Backspace':
+//             window.history.back();
+//             break;
+//         case 'Enter':
+//             const clickEvent = new Event('click');
+//             currentElement.dispatchEvent(clickEvent);
+//             break;
+//         default:
+//             console.log('Unhandled key:', event.key);
+//             window.alert('Unhandled key: ' + event.key);
+//             break;
+//     }
+
+// }
+
+
 function handleArrowNavigation(event) {
+    // Create a custom popup element
+    const popup = document.createElement('div');
+    popup.innerText = 'Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code;
+
+    // Set the popup style
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.padding = '20px';
+    popup.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    popup.style.color = 'white';
+    popup.style.borderRadius = '10px';
+    popup.style.zIndex = '1000';
+    popup.style.textAlign = 'center';
+
+    // Append popup to the body
+    document.body.appendChild(popup);
+
+    // Remove the popup after 3 seconds
+    setTimeout(() => {
+        document.body.removeChild(popup);
+    }, 3000);
+
     const currentElement = document.activeElement;
     if (!currentElement || !currentElement.classList.contains('focusable')) {
         document.querySelector('.focusable').focus();
@@ -71,11 +128,10 @@ function handleArrowNavigation(event) {
             break;
         default:
             console.log('Unhandled key:', event.key);
-            window.alert('Unhandled key: ' + event.key);
             break;
     }
-
 }
+
 
 // Initialize
 window.onload = () => {
