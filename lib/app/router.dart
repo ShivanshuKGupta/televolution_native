@@ -1,6 +1,7 @@
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../pages/home.dart';
+import '../pages/live_tv.dart';
 import '../presentation/screens/splash/splash.dart';
 import 'routes.dart';
 
@@ -14,5 +15,10 @@ final appRoutes = [
     path: AppRoutes.home,
     title: 'Home',
     builder: (context, state) => const HomeScreen(),
+  ),
+  Route(
+    path: AppRoutes.home,
+    title: 'vod',
+    builder: (context, state) => const VideoOnDemand(),
   ),
 ];

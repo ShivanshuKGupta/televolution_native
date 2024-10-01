@@ -33,8 +33,8 @@ class HomeScreenState extends State<HomeScreen> {
       autoplay: true,
       loop: true,
       muted: true,
+      preload: Preload.auto,
       src: 'videos/H264HD1080.mp4',
-      // Make it as the background video
       styles: const Styles.combine(
         [
           Styles.box(
