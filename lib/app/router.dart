@@ -17,7 +17,7 @@ final appRoutes = [
     builder: (context, state) => const HomeScreen(),
   ),
   Route(
-    path: AppRoutes.home,
+    path: AppRoutes.vod,
     title: 'vod',
     builder: (context, state) => const VideoOnDemand(),
   ),
