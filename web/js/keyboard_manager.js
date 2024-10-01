@@ -69,6 +69,9 @@ function handleArrowNavigation(event) {
             const clickEvent = new Event('click');
             currentElement.dispatchEvent(clickEvent);
             break;
+        default:
+            console.log('Unhandled key:', event.key);
+            break;
     }
 
 }
