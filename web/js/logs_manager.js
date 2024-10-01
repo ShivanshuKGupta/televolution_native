@@ -2,7 +2,7 @@ function initializeLogger() {
     // Create an overlay layer to cover the entire application
     const overlay = document.createElement('div');
     overlay.id = 'logOverlay';
-    overlay[' z-index'] = 100;
+    overlay.style['z-index'] = 100;
 
     document.body.appendChild(overlay);
 
@@ -20,6 +20,7 @@ function initializeLogger() {
     // Create a container for the logs inside the overlay
     const logContainer = document.createElement('div');
     logContainer.id = 'logContainer';
+    logContainer.style['z-index'] = 100;
     overlay.appendChild(logContainer);
 
     // Set styles for the log container
