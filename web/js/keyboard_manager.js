@@ -109,6 +109,19 @@ function handleArrowNavigation(event) {
         return;
     }
 
+    window.addEventListener("keydown", function(inEvent){
+        if(window.event) {
+            keycode = inEvent.keyCode;
+        } else if(e.which) {
+            keycode = inEvent.which;
+        }
+        switch (keycode) {
+            case 461: window.history.back(); break;
+            case 38: doUp(); break;
+            case 40: doDown(); break;
+            
+        }}
+    );
     switch (event.key) {
         case 'ArrowDown':
         case 'ArrowRight':
