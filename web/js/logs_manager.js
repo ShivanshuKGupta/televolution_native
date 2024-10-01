@@ -2,6 +2,8 @@ function initializeLogger() {
     // Create an overlay layer to cover the entire application
     const overlay = document.createElement('div');
     overlay.id = 'logOverlay';
+    overlay[' z-index'] = 100;
+
     document.body.appendChild(overlay);
 
     // Set styles for the overlay to cover the entire screen and make it transparent
@@ -57,25 +59,25 @@ function initializeLogger() {
     // Override console methods to show logs in the container
     ['log', 'warn', 'error'].forEach((method) => {
         const originalMethod = console[method];
-        console[method] = function(...args) {
+        console[method] = function (...args) {
             appendLogMessage(args.join(' '), method);
             originalMethod.apply(console, args);
         };
     });
 
     // Capture errors and unhandled rejections
-    window.onerror = function(message, source, lineno, colno, error) {
+    window.onerror = function (message, source, lineno, colno, error) {
         appendLogMessage(`Error: ${message} at ${source}:${lineno}:${colno}`, 'error');
     };
 
-    window.onunhandledrejection = function(event) {
+    window.onunhandledrejection = function (event) {
         appendLogMessage(`Unhandled Promise Rejection: ${event.reason}`, 'error');
     };
 
     // Capture network requests (XMLHttpRequest)
-    (function(open) {
-        XMLHttpRequest.prototype.open = function(method, url) {
-            this.addEventListener('load', function() {
+    (function (open) {
+        XMLHttpRequest.prototype.open = function (method, url) {
+            this.addEventListener('load', function () {
                 appendLogMessage(`Network Request: ${method} ${url} - Status: ${this.status}`, 'network');
             });
             open.apply(this, arguments);
@@ -83,8 +85,8 @@ function initializeLogger() {
     })(XMLHttpRequest.prototype.open);
 
     // Capture network requests (fetch)
-    (function(fetch) {
-        window.fetch = async function(...args) {
+    (function (fetch) {
+        window.fetch = async function (...args) {
             const response = await fetch(...args);
             appendLogMessage(`Network Request: ${args[0]} - Status: ${response.status}`, 'network');
             return response;
