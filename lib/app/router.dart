@@ -18,7 +18,7 @@ final appRoutes = [
   ),
   Route(
     path: AppRoutes.vod,
-    title: 'vod',
+    title: 'Video On Demand',
     builder: (context, state) => const VideoOnDemand(),
   ),
 ];
