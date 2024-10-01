@@ -1,7 +1,7 @@
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../pages/home.dart';
-import '../pages/live_tv.dart';
+import '../pages/video_on_demand.dart';
 import '../presentation/screens/splash/splash.dart';
 import 'routes.dart';
 

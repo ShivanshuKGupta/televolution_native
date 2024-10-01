@@ -1,8 +1,10 @@
 import 'dart:js_interop';
 
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr_router/jaspr_router.dart';
 import 'package:web/web.dart';
 
+import '../app/routes.dart';
 import '../appwrite/appwrite.dart';
 import '../appwrite/model_stream.dart';
 import '../components/clock.dart';
@@ -95,6 +97,7 @@ class HomeScreenState extends State<HomeScreen> {
                         ),
                         onTap: () {
                           console.log('Tapped on ${item.title}'.toJS);
+                          Router.of(context).push(AppRoutes.vod);
                         },
                         classes:
                             'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
