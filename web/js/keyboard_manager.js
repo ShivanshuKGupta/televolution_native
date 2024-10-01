@@ -117,8 +117,6 @@ function handleArrowNavigation(event) {
         }
         switch (keycode) {
             case 461: window.history.back(); break;
-            case 38: doUp(); break;
-            case 40: doDown(); break;
             
         }}
     );
