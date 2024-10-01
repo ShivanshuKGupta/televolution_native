@@ -9,6 +9,20 @@ class ScreensaverScreen extends StatelessComponent {
   @override
   Iterable<Component> build(BuildContext context) sync* {
     // yield const BubbleAnimation();
+    yield div(
+      [],
+      styles: const Styles.combine([
+        Styles.box(
+          height: Unit.percent(100),
+          width: Unit.percent(100),
+          position: Position.relative(),
+          overflow: Overflow.hidden,
+        ),
+        Styles.background(
+          color: Colors.black,
+        ),
+      ]),
+    );
 
     yield section(
       [
