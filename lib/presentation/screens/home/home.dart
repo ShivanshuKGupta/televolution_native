@@ -10,8 +10,6 @@ import '../../../components/clock.dart';
 import '../../../core/utils/datetime_extensions.dart';
 import '../../../core/utils/focus_component.dart';
 import '../../../data/models/modules_activation.dart';
-// import '../../../material_icons/icon.dart';
-// import '../../../material_icons/icons.dart';
 import '../../widgets/common_divider.dart';
 import 'home_view_model.dart';
 
@@ -34,7 +32,7 @@ class HomeScreenState extends State<HomeScreen> {
       loop: true,
       muted: true,
       preload: Preload.auto,
-      src: 'videos/H264HD1080.mp4',
+      src: 'https://mytvpocroyal.com/uploads/H264HD1080.mp4',
       styles: const Styles.combine(
         [
           Styles.box(
@@ -92,9 +90,33 @@ class HomeScreenState extends State<HomeScreen> {
               ],
               classes: 'flex flex-row justify-center items-center',
             ),
+            ClockComponent(builder: (context, dateTime) {
+              return div(
+                [
+                  div([text(dateTime.time)], classes: 'text-3xl font-bold'),
+                  div([text(dateTime.dayString)], classes: 'text-l font-bold'),
+                  
+                
+                ],
+                
+                classes:
+                    'text-white text-center flex flex-col justify-center h-full',
+              );
+            })
+          
           ],
           classes:
               'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
+        ),
+         div(
+          [
+            img(
+              src: 'https://mytvpocroyal.com/uploads/ship.png',
+              width: 750,
+              
+            ),
+          
+          ]
         ),
         StreamBuilder(
           stream: homeViewModel.modelStream.stream,
@@ -131,6 +153,7 @@ class HomeScreenState extends State<HomeScreen> {
                           classes:
                               'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
                         ),
+
                   ],
                   classes:
                       'grid grid-cols-8 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
@@ -146,4 +169,5 @@ class HomeScreenState extends State<HomeScreen> {
       classes: 'flex flex-col justify-between h-screen',
     );
   }
+  
 }

@@ -1,6 +1,7 @@
 import 'package:jaspr/jaspr.dart';
 
 import '../../../components/clock.dart';
+//import '../../widgets/bubbleBackground/bubble_animation.dart';
 import 'menu.dart';
 import 'splash_view_model.dart';
 
@@ -16,8 +17,30 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Iterable<Component> build(BuildContext context) sync* {
     // yield const BubbleAnimation();
-    yield div(
+   yield video(
       [],
+      controls: false,
+      autoplay: true,
+      loop: true,
+      muted: true,
+      preload: Preload.auto,
+      src: 'https://mytvpocroyal.com/uploads/CELAdds.mp4',
+      styles: const Styles.combine(
+        [
+          Styles.box(
+            width: Unit.percent(100),
+            height: Unit.percent(100),
+            position: Position.absolute(
+              top: Unit.zero,
+              left: Unit.zero,
+            ),
+          ),
+          Styles.raw({
+            'object-fit': 'cover',
+            'z-index': '-9',
+          })
+        ],
+      ),
       // styles: const Styles.combine([
       //   Styles.box(
       //     height: Unit.percent(100),
