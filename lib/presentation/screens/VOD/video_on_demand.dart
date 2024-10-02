@@ -2,7 +2,7 @@ import 'dart:math' show sqrt;
 
 import 'package:jaspr/jaspr.dart';
 
-import '../data/models/movie/movie.dart';
+import '../../../data/models/movie/movie.dart';
 
 class VideoOnDemand extends StatelessComponent {
   const VideoOnDemand({super.key});

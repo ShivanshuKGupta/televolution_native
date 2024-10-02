@@ -4,15 +4,15 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:web/web.dart';
 
-import '../app/routes.dart';
-import '../appwrite/appwrite.dart';
-import '../appwrite/model_stream.dart';
-import '../components/clock.dart';
-import '../core/utils/datetime_extensions.dart';
-import '../core/utils/focus_component.dart';
-import '../data/models/modules_activation.dart';
-import '../material_icons/icon.dart';
-import '../material_icons/icons.dart';
+import '../../../app/routes.dart';
+import '../../../appwrite/appwrite.dart';
+import '../../../appwrite/model_stream.dart';
+import '../../../components/clock.dart';
+import '../../../core/utils/datetime_extensions.dart';
+import '../../../core/utils/focus_component.dart';
+import '../../../data/models/modules_activation.dart';
+import '../../../material_icons/icon.dart';
+import '../../../material_icons/icons.dart';
 
 class HomeScreen extends StatefulComponent {
   const HomeScreen({super.key});
