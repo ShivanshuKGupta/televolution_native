@@ -10,8 +10,6 @@ import '../../../components/clock.dart';
 import '../../../core/utils/datetime_extensions.dart';
 import '../../../core/utils/focus_component.dart';
 import '../../../data/models/modules_activation.dart';
-// import '../../../material_icons/icon.dart';
-// import '../../../material_icons/icons.dart';
 import '../../widgets/common_divider.dart';
 import 'home_view_model.dart';
 
