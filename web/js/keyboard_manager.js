@@ -1,3 +1,5 @@
+import { getLogDiv, hideLogOverlay, showLogOverlay } from './new_log_manager.js';
+
 // Gets the Euclidean distance between two elements
 function getDistance(el1, el2) {
     const rect1 = el1.getBoundingClientRect();
@@ -77,7 +79,8 @@ function findClosestElement(current, direction) {
 
 // }
 
-export function handleArrowNavigation(event) {
+function handleArrowNavigation(event) {
+    toggleLogOverlay(event.keyCode);
     // showPopup('Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code);
 
     switch (event.keyCode) {
@@ -148,4 +151,38 @@ function showPopup(message) {
         if (bttn) bttn.focus();
         return;
     }
+}
+
+const keysToToggle = 1200;
+let lastKeys = 0;
+
+/// adds keyCode to lastKeys
+/// if lastKeys is equal to keysToToggle, it toggles the log overlay
+function toggleLogOverlay(keyCode) {
+    if (!(keyCode >= 48 && keyCode <= 57)) {
+        lastKeys = 0;
+        return;
+    }
+    lastKeys = lastKeys * 10 + (keyCode - 48);
+
+    let digits = Math.floor(Math.log10(keysToToggle)) + 1;
+    let divisor = Math.pow(10, digits);
+    lastKeys = lastKeys % divisor;
+
+    console.log('lastKeys: ' + lastKeys);
+
+    if (lastKeys == keysToToggle) {
+        lastKeys = 0;
+        let logDiv = getLogDiv();
+        if (logDiv.style.display == 'none') {
+            showLogOverlay();
+        } else {
+            hideLogOverlay();
+        }
+    }
+}
+
+window.onload = function () {
+    getLogDiv();
+    document.addEventListener('keydown', handleArrowNavigation);
 }

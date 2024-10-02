@@ -1,6 +1,4 @@
-import { handleArrowNavigation } from './keyboard_manager.js';
-
-function getLogDiv() {
+export function getLogDiv() {
     if (document.getElementById('logDiv')) {
         return document.getElementById('logDiv');
     }
@@ -70,17 +68,12 @@ function appendLogMessage(message, type) {
     logDiv.scrollTop = logDiv.scrollHeight;
 }
 
-function hideLogOverlay() {
+export function hideLogOverlay() {
     let logDiv = getLogDiv();
     logDiv.style.display = 'none';
 }
 
-function showLogOverlay() {
+export function showLogOverlay() {
     let logDiv = getLogDiv();
     logDiv.style.display = 'block';
-}
-
-window.onload = function () {
-    getLogDiv();
-    document.addEventListener('keydown', handleArrowNavigation);
 }
