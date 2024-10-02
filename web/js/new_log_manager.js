@@ -1,61 +1,80 @@
-(function () {
-    // Create and style the overlay
-    const logOverlay = document.createElement('div');
-    logOverlay.id = 'log-overlay';
-    logOverlay.style.position = 'fixed';
-    logOverlay.style.top = '0';
-    logOverlay.style.right = '0';
-    logOverlay.style.width = '100%';
-    logOverlay.style.height = '200px';
-    logOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-    logOverlay.style.color = 'white';
-    logOverlay.style.overflowY = 'scroll';
-    logOverlay.style.fontSize = '12px';
-    logOverlay.style.zIndex = '9999';
-    logOverlay.style.padding = '10px';
-    logOverlay.style.boxSizing = 'border-box';
-    logOverlay.style.display = 'none'; // Initially hidden
-    document.body.appendChild(logOverlay);
+function getLogDiv() {
+    if (document.getElementById('logDiv')) {
+        return document.getElementById('logDiv');
+    }
 
-    // Create a button to toggle the overlay visibility
-    const toggleButton = document.createElement('button');
-    toggleButton.innerText = 'Show Logs';
-    toggleButton.style.position = 'fixed';
-    toggleButton.style.bottom = '20px';
-    toggleButton.style.right = '20px';
-    toggleButton.style.zIndex = '10000';
-    toggleButton.style.padding = '10px 20px';
-    toggleButton.style.backgroundColor = '#007bff';
-    toggleButton.style.color = 'white';
-    toggleButton.style.border = 'none';
-    toggleButton.style.borderRadius = '5px';
-    toggleButton.style.cursor = 'pointer';
-    document.body.appendChild(toggleButton);
+    let newLogDiv = document.createElement('div');
+    newLogDiv.innerHTML = "Logs will appear here:";
+    newLogDiv.id = 'logDiv';
+    newLogDiv.style.position = 'absolute';
+    newLogDiv.style.bottom = '0';
+    newLogDiv.style.left = '0';
+    newLogDiv.style.width = '100%';
+    newLogDiv.style.height = '100%';
+    newLogDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+    newLogDiv.style.pointerEvents = 'none';
+    newLogDiv.style.zIndex = '10000';
+    newLogDiv.style.overflowY = 'auto';
+    newLogDiv.style.color = 'white';
+    newLogDiv.style.fontFamily = 'monospace';
+    newLogDiv.style.fontSize = '10px';
+    newLogDiv.style.boxSizing = 'border-box';
 
-    toggleButton.addEventListener('click', function () {
-        if (logOverlay.style.display === 'none') {
-            logOverlay.style.display = 'block';
-            toggleButton.innerText = 'Hide Logs';
-        } else {
-            logOverlay.style.display = 'none';
-            toggleButton.innerText = 'Show Logs';
-        }
+    document.body.appendChild(newLogDiv);
+    overrideConsoleMethods();
+
+    return newLogDiv;
+}
+
+const originalMethods = {
+    'log': console.log,
+    'warn': console.warn,
+    'error': console.error,
+    'network': console.network
+};
+
+function overrideConsoleMethods(logDiv) {
+    const methods = Object.keys(originalMethods);
+
+    methods.forEach(method => {
+        const originalMethod = originalMethods[method];
+        console[method] = function (message) {
+            originalMethod(message);
+            appendLogMessage(message, method);
+        };
     });
+}
 
-    // Backup the original console.log function
-    const originalConsoleLog = console.log;
+function appendLogMessage(message, type) {
+    const logEntry = document.createElement('div');
+    logEntry.className = 'logEntry';
+    logEntry.textContent = `[${type.toUpperCase()}] ${new Date().toISOString()}: ${message}`;
 
-    // Override console.log to append logs to the overlay
-    console.log = function (...args) {
-        // Call the original console.log
-        originalConsoleLog.apply(console, args);
+    if (type === 'error') {
+        logEntry.style.color = 'red';
+    } else if (type === 'warn') {
+        logEntry.style.color = 'orange';
+    } else if (type === 'network') {
+        logEntry.style.color = 'blue';
+    } else {
+        logEntry.style.color = 'white';
+    }
 
-        // Append log messages to the overlay
-        const logMessage = document.createElement('div');
-        logMessage.innerText = args.map(arg => (typeof arg === 'object' ? JSON.stringify(arg) : arg)).join(' ');
-        logOverlay.appendChild(logMessage);
+    let logDiv = getLogDiv();
+    logDiv.appendChild(logEntry);
+    logDiv.scrollTop = logDiv.scrollHeight;
+}
 
-        // Auto-scroll the overlay to the bottom
-        logOverlay.scrollTop = logOverlay.scrollHeight;
-    };
-})();
+function hideLogOverlay() {
+    let logDiv = getLogDiv();
+    logDiv.style.display = 'none';
+}
+
+function showLogOverlay() {
+    let logDiv = getLogDiv();
+    logDiv.style.display = 'block';
+}
+
+window.onload = function () {
+    getLogDiv();
+}
