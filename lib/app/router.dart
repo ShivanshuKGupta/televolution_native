@@ -9,7 +9,7 @@ final appRoutes = [
   Route(
     path: AppRoutes.screenSaver,
     title: 'Screensaver',
-    builder: (context, state) => const ScreensaverScreen(),
+    builder: (context, state) => const SplashScreen(),
   ),
   Route(
     path: AppRoutes.home,

@@ -2,10 +2,17 @@ import 'package:jaspr/jaspr.dart';
 
 import '../../../components/clock.dart';
 import 'menu.dart';
+import 'splash_view_model.dart';
 
-class ScreensaverScreen extends StatelessComponent {
-  const ScreensaverScreen({super.key});
+class SplashScreen extends StatefulComponent {
+  const SplashScreen({super.key});
 
+  @override
+  State<StatefulComponent> createState() => SplashScreenState();
+}
+
+class SplashScreenState extends State<SplashScreen> {
+  final splashViewModel = SplashViewModel();
   @override
   Iterable<Component> build(BuildContext context) sync* {
     // yield const BubbleAnimation();

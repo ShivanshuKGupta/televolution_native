@@ -1,15 +1,14 @@
-import 'dart:math' show sqrt;
-
 import 'package:jaspr/jaspr.dart';
 
 import '../../../data/models/movie/movie.dart';
+import 'video_on_demand_model.dart';
 
 class VideoOnDemand extends StatelessComponent {
   const VideoOnDemand({super.key});
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    final numColumns = sqrt(Movie.allMovies.length).ceil();
+    final videoOnDemandModel = VideoOnDemandModel();
 
     yield div([
       div(
@@ -37,6 +36,6 @@ class VideoOnDemand extends StatelessComponent {
       ),
     ],
         classes:
-            'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-$numColumns gap-4 justify-center');
+            'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-${videoOnDemandModel.numColumns} gap-4 justify-center');
   }
 }
