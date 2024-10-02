@@ -20,6 +20,7 @@ export function getLogDiv() {
     newLogDiv.style.fontFamily = 'monospace';
     newLogDiv.style.fontSize = '10px';
     newLogDiv.style.boxSizing = 'border-box';
+    newLogDiv.style.display = 'none';
 
     document.body.appendChild(newLogDiv);
     overrideConsoleMethods();

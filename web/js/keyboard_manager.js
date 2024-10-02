@@ -183,6 +183,6 @@ function toggleLogOverlay(keyCode) {
 }
 
 window.onload = function () {
-    hideLogOverlay();
+    getLogDiv();
     document.addEventListener('keydown', handleArrowNavigation);
 }
