@@ -80,7 +80,12 @@ function findClosestElement(current, direction) {
 // }
 
 function handleArrowNavigation(event) {
-    toggleLogOverlay(event.keyCode);
+    try {
+        toggleLogOverlay(event.keyCode);
+    }
+    catch (e) {
+        console.log("Error in Toggling console overlay", e);
+    }
     // showPopup('Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code);
 
     switch (event.keyCode) {
@@ -113,7 +118,10 @@ function handleArrowNavigation(event) {
             currentElement.dispatchEvent(clickEvent);
             break;
         default:
-            console.log('Unhandled Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code);
+            if (!(event.keyCode >= 48 && event.keyCode <= 57)) {
+                /// Ignoring digit keys for logging purpose
+                console.log('Unhandled Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code);
+            }
             break;
     }
 }
@@ -168,8 +176,6 @@ function toggleLogOverlay(keyCode) {
     let digits = Math.floor(Math.log10(keysToToggle)) + 1;
     let divisor = Math.pow(10, digits);
     lastKeys = lastKeys % divisor;
-
-    console.log('lastKeys: ' + lastKeys);
 
     if (lastKeys == keysToToggle) {
         lastKeys = 0;
