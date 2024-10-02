@@ -105,34 +105,32 @@ class HomeScreenState extends State<HomeScreen> {
                 div(
                   [
                     for (final item in data)
-                      FocusComponent(
-                        children: [
-                          if (item.$id == 'account_information')
-                            const Icon(Icons.person),
-                          if (item.$id == 'live_tv') const Icon(Icons.tv),
-                          if (item.$id == 'video_on_demand')
-                            const Icon(Icons.ondemandVideo),
-                          if (item.$id == 'my_photos')
-                            const Icon(Icons.photoLibrary),
-                          if (item.$id == 'itinerary')
-                            const Icon(Icons.roomService),
-                          if (item.$id == 'explore') const Icon(Icons.star),
-                          if (item.$id == 'room_controls')
-                            const Icon(Icons.home),
-                          if (item.$id == 'guest_relations')
-                            const Icon(Icons.info),
-                          text(item.title),
-                        ],
-                        borderRadius: const BorderRadius.circular(
-                          Unit.pixels(100),
+                      if (item.enabled)
+                        FocusComponent(
+                          children: [
+                            Icon(switch (item.$id) {
+                              'account_information' => Icons.person,
+                              'live_tv' => Icons.tv,
+                              'video_on_demand' => Icons.ondemandVideo,
+                              'my_photos' => Icons.photoLibrary,
+                              'itinerary' => Icons.roomService,
+                              'explore' => Icons.star,
+                              'room_controls' => Icons.home,
+                              'guest_relations' => Icons.info,
+                              _ => Icons.error,
+                            }),
+                            text(item.title),
+                          ],
+                          borderRadius: const BorderRadius.circular(
+                            Unit.pixels(100),
+                          ),
+                          onTap: () {
+                            console.log('Tapped on ${item.title}'.toJS);
+                            Router.of(context).push(AppRoutes.vod);
+                          },
+                          classes:
+                              'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
                         ),
-                        onTap: () {
-                          console.log('Tapped on ${item.title}'.toJS);
-                          Router.of(context).push(AppRoutes.vod);
-                        },
-                        classes:
-                            'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
-                      ),
                   ],
                   classes:
                       'grid grid-cols-8 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
