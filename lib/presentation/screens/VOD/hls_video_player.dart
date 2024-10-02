@@ -3,6 +3,9 @@ import 'dart:js_interop';
 import 'package:jaspr/jaspr.dart';
 import 'package:web/web.dart';
 
+@JS('window.hlsPlayer.dispose')
+external void disposeHlsPlayer();
+
 class HLSVideoComponent extends StatefulComponent {
   final String streamUrl;
   const HLSVideoComponent({super.key, required this.streamUrl});
@@ -26,9 +29,8 @@ class _HLSVideoComponentState extends State<HLSVideoComponent> {
   @override
   void dispose() {
     try {
-      // removing video
-      final player = document.getElementById('hls-example');
-      player?.remove();
+      print('Disposing player');
+      disposeHlsPlayer();
     } catch (e) {
       console.error('Error stopping player: $e'.toJS);
     }
@@ -54,8 +56,8 @@ class _HLSVideoComponentState extends State<HLSVideoComponent> {
       script([], src: 'https://cdn.jsdelivr.net/npm/hls.js@latest'),
       raw("""
       <script>
-        var player = videojs('hls-example');
-        player.play();
+        window.hlsPlayer = videojs('hls-example');
+        window.hlsPlayer.play();
       </script>
       """),
     ]);
