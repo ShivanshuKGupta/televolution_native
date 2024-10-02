@@ -12,6 +12,7 @@ import '../../../core/utils/focus_component.dart';
 import '../../../data/models/modules_activation.dart';
 // import '../../../material_icons/icon.dart';
 // import '../../../material_icons/icons.dart';
+import '../../widgets/common_divider.dart';
 import 'home_view_model.dart';
 
 class HomeScreen extends StatefulComponent {
@@ -56,24 +57,44 @@ class HomeScreenState extends State<HomeScreen> {
       [
         div(
           [
-            img(
-              src: 'https://mytvpocroyal.com/web/assets/assets/images/logo.png',
-              width: 150,
-              styles: const Styles.raw({'filter': 'brightness(0) invert(1)'}),
+            div([
+              img(
+                src:
+                    'https://mytvpocroyal.com/web/assets/assets/images/logo.png',
+                width: 150,
+                styles: const Styles.raw({'filter': 'brightness(0) invert(1)'}),
+              ),
+            ]),
+            div(
+              [
+                const Icon(Icons.message),
+            commonDivider(),
+            const Icon(Icons.security),
+            commonDivider(),
+            const Icon(Icons.notifications),
+            commonDivider(),
+            const Icon(Icons.settings),
+            commonDivider(),
+            const Icon(Icons.powerSettingsNew),
+            commonDivider(),
+            ClockComponent(
+              builder: (context, dateTime) {
+                return div(
+                  [
+                    div([text(dateTime.time)], classes: 'text-3xl '),
+                    div([text(dateTime.dayString)], classes: 'text-l '),
+                  ],
+                  classes:
+                      'text-white text-center flex flex-col justify-center h-full',
+                );
+              },
+            )
+              ],
+              classes: 'flex flex-row justify-center items-center',
             ),
-            ClockComponent(builder: (context, dateTime) {
-              return div(
-                [
-                  div([text(dateTime.time)], classes: 'text-3xl font-bold'),
-                  div([text(dateTime.dayString)], classes: 'text-l font-bold'),
-                ],
-                classes:
-                    'text-white text-center flex flex-col justify-center h-full',
-              );
-            })
+            
           ],
-          classes:
-              'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
+          classes: 'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
         ),
         StreamBuilder(
           stream: homeViewModel.modelStream.stream,
@@ -86,15 +107,20 @@ class HomeScreenState extends State<HomeScreen> {
                     for (final item in data)
                       FocusComponent(
                         children: [
-                          if (item.$id == 'account_information') const Icon(Icons.person),
+                          if (item.$id == 'account_information')
+                            const Icon(Icons.person),
                           if (item.$id == 'live_tv') const Icon(Icons.tv),
-                          if (item.$id == 'video_on_demand') const Icon(Icons.ondemandVideo),
-                          if (item.$id == 'my_photos') const Icon(Icons.photoLibrary),
-                          if (item.$id == 'itinerary') const Icon(Icons.roomService),
+                          if (item.$id == 'video_on_demand')
+                            const Icon(Icons.ondemandVideo),
+                          if (item.$id == 'my_photos')
+                            const Icon(Icons.photoLibrary),
+                          if (item.$id == 'itinerary')
+                            const Icon(Icons.roomService),
                           if (item.$id == 'explore') const Icon(Icons.star),
-                          if (item.$id == 'room_controls') const Icon(Icons.home),
-                          if (item.$id == 'guest_relations') const Icon(Icons.info),
-
+                          if (item.$id == 'room_controls')
+                            const Icon(Icons.home),
+                          if (item.$id == 'guest_relations')
+                            const Icon(Icons.info),
                           text(item.title),
                         ],
                         borderRadius: const BorderRadius.circular(
