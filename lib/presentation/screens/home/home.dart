@@ -1,6 +1,7 @@
 import 'dart:js_interop';
 
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr_material/jaspr_material.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:web/web.dart';
 
@@ -9,8 +10,8 @@ import '../../../components/clock.dart';
 import '../../../core/utils/datetime_extensions.dart';
 import '../../../core/utils/focus_component.dart';
 import '../../../data/models/modules_activation.dart';
-import '../../../material_icons/icon.dart';
-import '../../../material_icons/icons.dart';
+// import '../../../material_icons/icon.dart';
+// import '../../../material_icons/icons.dart';
 import 'home_view_model.dart';
 
 class HomeScreen extends StatefulComponent {
@@ -86,7 +87,20 @@ class HomeScreenState extends State<HomeScreen> {
                       if (item.enabled)
                         FocusComponent(
                           children: [
-                            const Icon(Icons.add),
+                            if (item.$id == 'account_information')
+                              const Icon(Icons.person),
+                            if (item.$id == 'live_tv') const Icon(Icons.tv),
+                            if (item.$id == 'video_on_demand')
+                              const Icon(Icons.ondemandVideo),
+                            if (item.$id == 'my_photos')
+                              const Icon(Icons.photoLibrary),
+                            if (item.$id == 'itinerary')
+                              const Icon(Icons.roomService),
+                            if (item.$id == 'explore') const Icon(Icons.star),
+                            if (item.$id == 'room_controls')
+                              const Icon(Icons.home),
+                            if (item.$id == 'guest_relations')
+                              const Icon(Icons.info),
                             text(item.title),
                           ],
                           borderRadius: const BorderRadius.circular(
