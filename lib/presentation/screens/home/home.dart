@@ -83,21 +83,22 @@ class HomeScreenState extends State<HomeScreen> {
                 div(
                   [
                     for (final item in data)
-                      FocusComponent(
-                        children: [
-                          const Icon(Icons.add),
-                          text(item.title),
-                        ],
-                        borderRadius: const BorderRadius.circular(
-                          Unit.pixels(100),
+                      if (item.enabled)
+                        FocusComponent(
+                          children: [
+                            const Icon(Icons.add),
+                            text(item.title),
+                          ],
+                          borderRadius: const BorderRadius.circular(
+                            Unit.pixels(100),
+                          ),
+                          onTap: () {
+                            console.log('Tapped on ${item.title}'.toJS);
+                            Router.of(context).push(AppRoutes.vod);
+                          },
+                          classes:
+                              'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
                         ),
-                        onTap: () {
-                          console.log('Tapped on ${item.title}'.toJS);
-                          Router.of(context).push(AppRoutes.vod);
-                        },
-                        classes:
-                            'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
-                      ),
                   ],
                   classes:
                       'grid grid-cols-8 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
