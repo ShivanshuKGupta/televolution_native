@@ -1,3 +1,5 @@
+import { handleArrowNavigation } from './keyboard_manager.js';
+
 function getLogDiv() {
     if (document.getElementById('logDiv')) {
         return document.getElementById('logDiv');
@@ -13,6 +15,7 @@ function getLogDiv() {
     newLogDiv.style.height = '100%';
     newLogDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
     newLogDiv.style.pointerEvents = 'none';
+    newLogDiv.tabIndex = '-1';
     newLogDiv.style.zIndex = '10000';
     newLogDiv.style.overflowY = 'auto';
     newLogDiv.style.color = 'white';
@@ -30,6 +33,7 @@ const originalMethods = {
     'log': console.log,
     'warn': console.warn,
     'error': console.error,
+    'info': console.info,
     'network': console.network
 };
 
@@ -48,6 +52,7 @@ function overrideConsoleMethods(logDiv) {
 function appendLogMessage(message, type) {
     const logEntry = document.createElement('div');
     logEntry.className = 'logEntry';
+    logEntry.tabIndex = '-1';
     logEntry.textContent = `[${type.toUpperCase()}] ${new Date().toISOString()}: ${message}`;
 
     if (type === 'error') {
@@ -77,4 +82,5 @@ function showLogOverlay() {
 
 window.onload = function () {
     getLogDiv();
+    document.addEventListener('keydown', handleArrowNavigation);
 }

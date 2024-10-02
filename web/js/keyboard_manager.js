@@ -77,21 +77,22 @@ function findClosestElement(current, direction) {
 
 // }
 
-
-function handleArrowNavigation(event) {
+export function handleArrowNavigation(event) {
     showPopup('Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code);
 
-    let inEvent = event;
-    if (window.event) {
-        keycode = inEvent.keyCode;
-    } else if (e.which) {
-        keycode = inEvent.which;
-    }
+    // let inEvent = event;
+    // if (window.event) {
+    //     keycode = inEvent.keyCode;
+    // } else if (e.which) {
+    //     keycode = inEvent.which;
+    // }
 
-    /// TODO: try to make the below swicth event as event.keyCode
-    switch (keycode) {
+    // /// TODO: try to make the below swicth event as event.keyCode
+    switch (event.keyCode) {
         case 461: window.history.back(); break;
     }
+
+    const currentElement = document.activeElement;
 
     switch (event.key) {
         case 'ArrowDown':
@@ -122,15 +123,9 @@ function handleArrowNavigation(event) {
     }
 }
 
-
-// Initialize
-window.onload = () => {
-    console.log('Keyboard manager initialized');
-    document.addEventListener('keydown', handleArrowNavigation);
-};
-
 // Shows a popup window
 function showPopup(message) {
+    console.log(message);
     // Create a custom popup element
     const popup = document.createElement('div');
     popup.innerText = message;
@@ -157,7 +152,8 @@ function showPopup(message) {
 
     const currentElement = document.activeElement;
     if (!currentElement || !currentElement.classList.contains('focusable')) {
-        document.querySelector('.focusable').focus();
+        let bttn = document.querySelector('.focusable');
+        if (bttn) bttn.focus();
         return;
     }
 }
