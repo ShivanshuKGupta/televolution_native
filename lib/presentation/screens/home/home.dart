@@ -4,15 +4,14 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:web/web.dart';
 
-import '../app/routes.dart';
-import '../appwrite/appwrite.dart';
-import '../appwrite/model_stream.dart';
-import '../components/clock.dart';
-import '../core/utils/datetime_extensions.dart';
-import '../core/utils/focus_component.dart';
-import '../data/models/modules_activation.dart';
-import '../material_icons/icon.dart';
-import '../material_icons/icons.dart';
+import '../../../app/routes.dart';
+import '../../../components/clock.dart';
+import '../../../core/utils/datetime_extensions.dart';
+import '../../../core/utils/focus_component.dart';
+import '../../../data/models/modules_activation.dart';
+import '../../../material_icons/icon.dart';
+import '../../../material_icons/icons.dart';
+import 'home_view_model.dart';
 
 class HomeScreen extends StatefulComponent {
   const HomeScreen({super.key});
@@ -22,10 +21,7 @@ class HomeScreen extends StatefulComponent {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  final modelStream = ModelStream(
-      databaseId: AppwriteClient.dbId,
-      collectionId: AppwriteClient.moduleActivation,
-      convert: ModulesActivationModel.fromJson);
+  final homeViewModel = HomeViewModel();
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
@@ -79,7 +75,7 @@ class HomeScreenState extends State<HomeScreen> {
               'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
         ),
         StreamBuilder(
-          stream: modelStream.stream,
+          stream: homeViewModel.modelStream.stream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final List<ModulesActivationModel> data = snapshot.data!;
