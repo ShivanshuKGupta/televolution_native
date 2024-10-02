@@ -1,5 +1,6 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
+
 import 'router.dart';
 
 // The main component of your application.
@@ -19,7 +20,18 @@ class App extends StatelessComponent {
       Router(routes: [
         ShellRoute(
           builder: (context, state, child) => Fragment(children: [
-            // const Header(),
+            div(
+              [],
+              classes: 'bg-blue-500',
+              styles: const Styles.raw({
+                'position': 'fixed',
+                'top': '0',
+                'left': '0',
+                'width': '100%',
+                'height': '100%',
+                'z-index': '-20',
+              }),
+            ),
             child,
           ]),
           routes: appRoutes,
