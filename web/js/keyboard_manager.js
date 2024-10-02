@@ -78,16 +78,8 @@ function findClosestElement(current, direction) {
 // }
 
 export function handleArrowNavigation(event) {
-    showPopup('Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code);
+    // showPopup('Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code);
 
-    // let inEvent = event;
-    // if (window.event) {
-    //     keycode = inEvent.keyCode;
-    // } else if (e.which) {
-    //     keycode = inEvent.which;
-    // }
-
-    // /// TODO: try to make the below swicth event as event.keyCode
     switch (event.keyCode) {
         case 461: window.history.back(); break;
     }
@@ -118,7 +110,7 @@ export function handleArrowNavigation(event) {
             currentElement.dispatchEvent(clickEvent);
             break;
         default:
-            // console.log('Unhandled key:', event.key);
+            console.log('Unhandled Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code);
             break;
     }
 }
