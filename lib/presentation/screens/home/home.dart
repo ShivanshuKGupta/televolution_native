@@ -68,33 +68,33 @@ class HomeScreenState extends State<HomeScreen> {
             div(
               [
                 const Icon(Icons.message),
-            commonDivider(),
-            const Icon(Icons.security),
-            commonDivider(),
-            const Icon(Icons.notifications),
-            commonDivider(),
-            const Icon(Icons.settings),
-            commonDivider(),
-            const Icon(Icons.powerSettingsNew),
-            commonDivider(),
-            ClockComponent(
-              builder: (context, dateTime) {
-                return div(
-                  [
-                    div([text(dateTime.time)], classes: 'text-3xl '),
-                    div([text(dateTime.dayString)], classes: 'text-l '),
-                  ],
-                  classes:
-                      'text-white text-center flex flex-col justify-center h-full',
-                );
-              },
-            )
+                commonDivider(),
+                const Icon(Icons.security),
+                commonDivider(),
+                const Icon(Icons.notifications),
+                commonDivider(),
+                const Icon(Icons.settings),
+                commonDivider(),
+                const Icon(Icons.powerSettingsNew),
+                commonDivider(),
+                ClockComponent(
+                  builder: (context, dateTime) {
+                    return div(
+                      [
+                        div([text(dateTime.time)], classes: 'text-3xl '),
+                        div([text(dateTime.dayString)], classes: 'text-l '),
+                      ],
+                      classes:
+                          'text-white text-center flex flex-col justify-center h-full',
+                    );
+                  },
+                )
               ],
               classes: 'flex flex-row justify-center items-center',
             ),
-            
           ],
-          classes: 'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
+          classes:
+              'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
         ),
         StreamBuilder(
           stream: homeViewModel.modelStream.stream,
