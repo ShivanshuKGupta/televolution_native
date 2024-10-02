@@ -46,39 +46,6 @@ function findClosestElement(current, direction) {
     return closestElement;
 }
 
-// Handle arrow key navigation based on spatial arrangement
-// function handleArrowNavigation(event) {
-//     const currentElement = document.activeElement;
-//     if (!currentElement || !currentElement.classList.contains('focusable')) {
-//         document.querySelector('.focusable').focus();
-//         return;
-//     }
-
-//     switch (event.key) {
-//         case 'ArrowDown':
-//         case 'ArrowRight':
-//         case 'ArrowUp':
-//         case 'ArrowLeft':
-//             const closestElement = findClosestElement(currentElement, event.key);
-//             if (closestElement) {
-//                 closestElement.focus();
-//             }
-//             break;
-//         case 'Backspace':
-//             window.history.back();
-//             break;
-//         case 'Enter':
-//             const clickEvent = new Event('click');
-//             currentElement.dispatchEvent(clickEvent);
-//             break;
-//         default:
-//             console.log('Unhandled key:', event.key);
-//             window.alert('Unhandled key: ' + event.key);
-//             break;
-//     }
-
-// }
-
 function handleArrowNavigation(event) {
     try {
         toggleLogOverlay(event.keyCode);
