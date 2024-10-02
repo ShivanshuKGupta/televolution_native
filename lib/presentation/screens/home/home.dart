@@ -1,6 +1,7 @@
 import 'dart:js_interop';
 
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr_material/jaspr_material.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:web/web.dart';
 
@@ -9,8 +10,7 @@ import '../../../components/clock.dart';
 import '../../../core/utils/datetime_extensions.dart';
 import '../../../core/utils/focus_component.dart';
 import '../../../data/models/modules_activation.dart';
-import '../../../material_icons/icon.dart';
-import '../../../material_icons/icons.dart';
+import '../../widgets/common_divider.dart';
 import 'home_view_model.dart';
 
 class HomeScreen extends StatefulComponent {
@@ -55,10 +55,40 @@ class HomeScreenState extends State<HomeScreen> {
       [
         div(
           [
-            img(
-              src: 'https://mytvpocroyal.com/web/assets/assets/images/logo.png',
-              width: 150,
-              styles: const Styles.raw({'filter': 'brightness(0) invert(1)'}),
+            div([
+              img(
+                src:
+                    'https://mytvpocroyal.com/web/assets/assets/images/logo.png',
+                width: 150,
+                styles: const Styles.raw({'filter': 'brightness(0) invert(1)'}),
+              ),
+            ]),
+            div(
+              [
+                const Icon(Icons.message),
+                commonDivider(),
+                const Icon(Icons.security),
+                commonDivider(),
+                const Icon(Icons.notifications),
+                commonDivider(),
+                const Icon(Icons.settings),
+                commonDivider(),
+                const Icon(Icons.powerSettingsNew),
+                commonDivider(),
+                ClockComponent(
+                  builder: (context, dateTime) {
+                    return div(
+                      [
+                        div([text(dateTime.time)], classes: 'text-3xl '),
+                        div([text(dateTime.dayString)], classes: 'text-l '),
+                      ],
+                      classes:
+                          'text-white text-center flex flex-col justify-center h-full',
+                    );
+                  },
+                )
+              ],
+              classes: 'flex flex-row justify-center items-center',
             ),
             ClockComponent(builder: (context, dateTime) {
               return div(
@@ -97,21 +127,33 @@ class HomeScreenState extends State<HomeScreen> {
                 div(
                   [
                     for (final item in data)
-                      FocusComponent(
-                        children: [
-                          const Icon(Icons.add),
-                          text(item.title),
-                        ],
-                        borderRadius: const BorderRadius.circular(
-                          Unit.pixels(100),
+                      if (item.enabled)
+                        FocusComponent(
+                          children: [
+                            Icon(switch (item.$id) {
+                              'account_information' => Icons.person,
+                              'live_tv' => Icons.tv,
+                              'video_on_demand' => Icons.ondemandVideo,
+                              'my_photos' => Icons.photoLibrary,
+                              'itinerary' => Icons.roomService,
+                              'explore' => Icons.star,
+                              'room_controls' => Icons.home,
+                              'guest_relations' => Icons.info,
+                              _ => Icons.error,
+                            }),
+                            text(item.title),
+                          ],
+                          borderRadius: const BorderRadius.circular(
+                            Unit.pixels(100),
+                          ),
+                          onTap: () {
+                            console.log('Tapped on ${item.title}'.toJS);
+                            Router.of(context).push(AppRoutes.vod);
+                          },
+                          classes:
+                              'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
                         ),
-                        onTap: () {
-                          console.log('Tapped on ${item.title}'.toJS);
-                          Router.of(context).push(AppRoutes.vod);
-                        },
-                        classes:
-                            'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
-                      ),
+
                   ],
                   classes:
                       'grid grid-cols-8 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',

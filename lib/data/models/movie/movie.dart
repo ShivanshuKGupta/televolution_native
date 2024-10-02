@@ -21,6 +21,32 @@ class Movie {
     required this.createdAt,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'description': description,
+      'image': image,
+      'duration': duration.inSeconds,
+      'rating': rating,
+      'genre': genre.map((e) => e.toString().split('.').last).toList(),
+      'streamUrl': streamUrl,
+      'createdAt': createdAt.toIso8601String(),
+    };
+  }
+
+  Movie.fromJson(Map<String, dynamic> json)
+      : title = json['title'],
+        description = json['description'],
+        image = json['image'],
+        duration = Duration(seconds: json['duration']),
+        rating = json['rating'],
+        genre = (json['genre'] as List<String>)
+            .map((e) => Genre.values.firstWhere(
+                (element) => element.toString().split('.').last == e))
+            .toList(),
+        streamUrl = json['streamUrl'],
+        createdAt = DateTime.parse(json['createdAt']);
+
   static List<Movie> allMovies = [
     Movie(
       streamUrl: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
