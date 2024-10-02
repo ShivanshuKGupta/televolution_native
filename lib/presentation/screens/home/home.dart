@@ -87,20 +87,17 @@ class HomeScreenState extends State<HomeScreen> {
                       if (item.enabled)
                         FocusComponent(
                           children: [
-                            if (item.$id == 'account_information')
-                              const Icon(Icons.person),
-                            if (item.$id == 'live_tv') const Icon(Icons.tv),
-                            if (item.$id == 'video_on_demand')
-                              const Icon(Icons.ondemandVideo),
-                            if (item.$id == 'my_photos')
-                              const Icon(Icons.photoLibrary),
-                            if (item.$id == 'itinerary')
-                              const Icon(Icons.roomService),
-                            if (item.$id == 'explore') const Icon(Icons.star),
-                            if (item.$id == 'room_controls')
-                              const Icon(Icons.home),
-                            if (item.$id == 'guest_relations')
-                              const Icon(Icons.info),
+                            Icon(switch (item.$id) {
+                              'account_information' => Icons.person,
+                              'live_tv' => Icons.tv,
+                              'video_on_demand' => Icons.ondemandVideo,
+                              'my_photos' => Icons.photoLibrary,
+                              'itinerary' => Icons.roomService,
+                              'explore' => Icons.star,
+                              'room_controls' => Icons.home,
+                              'guest_relations' => Icons.info,
+                              _ => Icons.error,
+                            }),
                             text(item.title),
                           ],
                           borderRadius: const BorderRadius.circular(
