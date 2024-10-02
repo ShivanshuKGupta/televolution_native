@@ -95,29 +95,21 @@ class HomeScreenState extends State<HomeScreen> {
                 [
                   div([text(dateTime.time)], classes: 'text-3xl font-bold'),
                   div([text(dateTime.dayString)], classes: 'text-l font-bold'),
-                  
-                
                 ],
-                
                 classes:
                     'text-white text-center flex flex-col justify-center h-full',
               );
             })
-          
           ],
           classes:
               'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
         ),
-         div(
-          [
-            img(
-              src: 'https://mytvpocroyal.com/uploads/ship.png',
-              width: 750,
-              
-            ),
-          
-          ]
-        ),
+        div([
+          img(
+            src: 'https://mytvpocroyal.com/uploads/ship.png',
+            width: 750,
+          ),
+        ]),
         StreamBuilder(
           stream: homeViewModel.modelStream.stream,
           builder: (context, snapshot) {
@@ -153,10 +145,9 @@ class HomeScreenState extends State<HomeScreen> {
                           classes:
                               'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
                         ),
-
                   ],
                   classes:
-                      'grid grid-cols-8 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-full',
+                      'grid grid-cols-8 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-t-3xl',
                 )
               ];
             } else if (snapshot.hasError) {
@@ -169,5 +160,4 @@ class HomeScreenState extends State<HomeScreen> {
       classes: 'flex flex-col justify-between h-screen',
     );
   }
-  
 }

@@ -31,6 +31,8 @@ class _HLSVideoComponentState extends State<HLSVideoComponent> {
     try {
       print('Disposing player');
       disposeHlsPlayer();
+
+      document.exitFullscreen();
     } catch (e) {
       console.error('Error stopping player: $e'.toJS);
     }
