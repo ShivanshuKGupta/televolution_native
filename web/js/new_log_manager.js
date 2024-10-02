@@ -11,7 +11,7 @@ export function getLogDiv() {
     newLogDiv.style.left = '0';
     newLogDiv.style.width = '100%';
     newLogDiv.style.height = '100%';
-    newLogDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+    newLogDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     newLogDiv.style.pointerEvents = 'none';
     newLogDiv.tabIndex = '-1';
     newLogDiv.style.zIndex = '10000';

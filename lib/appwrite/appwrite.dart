@@ -10,8 +10,8 @@ part 'raw_realtime.g.dart';
 
 class AppwriteClient {
   static const String endPoint =
-      'https://7xwrgbhq-80.inc1.devtunnels.ms/v1'; // https://cloud.appwrite.io/v1
-  static const String projectId = 'televolution'; // 66b20ea5002316ed487f
+      'https://8pn0zq4z-80.use2.devtunnels.ms/v1'; // https://cloud.appwrite.io/v1
+  static const String projectId = 'projectx'; // 66b20ea5002316ed487f
 
   /// The Main Database ID
   static const String dbId = 'lite-db';

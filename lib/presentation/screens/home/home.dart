@@ -32,7 +32,7 @@ class HomeScreenState extends State<HomeScreen> {
       loop: true,
       muted: true,
       preload: Preload.auto,
-      src: 'videos/H264HD1080.mp4',
+      src: 'https://mytvpocroyal.com/uploads/H264HD1080.mp4',
       styles: const Styles.combine(
         [
           Styles.box(
@@ -65,14 +65,28 @@ class HomeScreenState extends State<HomeScreen> {
                 [
                   div([text(dateTime.time)], classes: 'text-3xl font-bold'),
                   div([text(dateTime.dayString)], classes: 'text-l font-bold'),
+                  
+                
                 ],
+                
                 classes:
                     'text-white text-center flex flex-col justify-center h-full',
               );
             })
+          
           ],
           classes:
               'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
+        ),
+         div(
+          [
+            img(
+              src: 'https://mytvpocroyal.com/uploads/ship.png',
+              width: 750,
+              
+            ),
+          
+          ]
         ),
         StreamBuilder(
           stream: homeViewModel.modelStream.stream,
@@ -113,4 +127,5 @@ class HomeScreenState extends State<HomeScreen> {
       classes: 'flex flex-col justify-between h-screen',
     );
   }
+  
 }
