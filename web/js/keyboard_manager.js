@@ -79,47 +79,20 @@ function findClosestElement(current, direction) {
 
 
 function handleArrowNavigation(event) {
-    // Create a custom popup element
-    const popup = document.createElement('div');
-    popup.innerText = 'Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code;
+    showPopup('Key pressed: ' + event.key + '\nKeyCode: ' + event.keyCode + '\nCode: ' + event.code);
 
-    // Set the popup style
-    popup.style.position = 'fixed';
-    popup.style.top = '50%';
-    popup.style.left = '50%';
-    popup.style.transform = 'translate(-50%, -50%)';
-    popup.style.padding = '20px';
-    popup.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-    popup.style.color = 'white';
-    popup.style.borderRadius = '10px';
-    popup.style.zIndex = '1000';
-    popup.style.textAlign = 'center';
-
-    // Append popup to the body
-    document.body.appendChild(popup);
-
-    // Remove the popup after 3 seconds
-    setTimeout(() => {
-        document.body.removeChild(popup);
-    }, 3000);
-
-    const currentElement = document.activeElement;
-    if (!currentElement || !currentElement.classList.contains('focusable')) {
-        document.querySelector('.focusable').focus();
-        return;
+    let inEvent = event;
+    if (window.event) {
+        keycode = inEvent.keyCode;
+    } else if (e.which) {
+        keycode = inEvent.which;
     }
 
-    window.addEventListener("keydown", function(inEvent){
-        if(window.event) {
-            keycode = inEvent.keyCode;
-        } else if(e.which) {
-            keycode = inEvent.which;
-        }
-        switch (keycode) {
-            case 461: window.history.back(); break;
-            
-        }}
-    );
+    /// TODO: try to make the below swicth event as event.keyCode
+    switch (keycode) {
+        case 461: window.history.back(); break;
+    }
+
     switch (event.key) {
         case 'ArrowDown':
         case 'ArrowRight':
@@ -155,3 +128,36 @@ window.onload = () => {
     console.log('Keyboard manager initialized');
     document.addEventListener('keydown', handleArrowNavigation);
 };
+
+// Shows a popup window
+function showPopup(message) {
+    // Create a custom popup element
+    const popup = document.createElement('div');
+    popup.innerText = message;
+
+    // Set the popup style
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.padding = '20px';
+    popup.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    popup.style.color = 'white';
+    popup.style.borderRadius = '10px';
+    popup.style.zIndex = '1000';
+    popup.style.textAlign = 'center';
+
+    // Append popup to the body
+    document.body.appendChild(popup);
+
+    // Remove the popup after 3 seconds
+    setTimeout(() => {
+        document.body.removeChild(popup);
+    }, 3000);
+
+    const currentElement = document.activeElement;
+    if (!currentElement || !currentElement.classList.contains('focusable')) {
+        document.querySelector('.focusable').focus();
+        return;
+    }
+}
