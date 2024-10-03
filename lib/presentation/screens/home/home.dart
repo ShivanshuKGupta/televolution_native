@@ -65,15 +65,155 @@ class HomeScreenState extends State<HomeScreen> {
             ]),
             div(
               [
-                const Icon(Icons.message),
+                FocusComponent(
+                  children: [
+                    const Icon(
+                      Icons.message,
+                    ),
+                  ],
+                  onTap: () {},
+                ),
                 commonDivider(),
-                const Icon(Icons.security),
+                FocusComponent(
+                  children: [
+                    const Icon(
+                      Icons.security,
+                    ),
+                  ],
+                  onTap: () {},
+                ),
                 commonDivider(),
-                const Icon(Icons.notifications),
+                FocusComponent(
+                  children: [
+                    div(
+                      [
+                        span(
+                          [
+                            text('TV ON THE GO'),
+                          ],
+                          classes: 'text-l mb-1 font-light',
+                        ),
+                        span(
+                          [
+                            img(
+                              src: 'images/qrcode.png',
+                              height: 60,
+                              width: 60,
+                            ),
+                          ],
+                        ),
+                      ],
+                      classes:
+                          'flex flex-col justify-center items-center rounded-3xl p-3 bg-black bg-opacity-20',
+                    ),
+                  ],
+                  onTap: () {},
+                ),
                 commonDivider(),
-                const Icon(Icons.settings),
+                div(
+                  [
+                    div(
+                      [
+                        span(
+                          [
+                            text('GANGWAY'),
+                          ],
+                          classes:
+                              'bg-black bg-opacity-20 text-white p-2 w-[100px] rounded-tl-lg rounded-tr-lg text-center text-[15px] font-light',
+                        ),
+                        span(
+                          [
+                            text('DECK 5'),
+                          ],
+                          classes:
+                              'bg-white text-black p-2 w-[100px] text-center text-xl rounded-bl-lg rounded-br-lg font-light',
+                        ),
+                      ],
+                      classes: 'flex flex-col justify-center items-center',
+                    ),
+                    div(
+                      [
+                        span(
+                          [
+                            text('ALL BOARD'),
+                          ],
+                          classes:
+                              'bg-black bg-opacity-20 text-white p-2 w-[100px] rounded-tl-lg rounded-tr-lg text-center text-[15px] font-light',
+                        ),
+                        span(
+                          [
+                            text('5:00 PM'),
+                          ],
+                          classes:
+                              'bg-white text-black p-2 w-[100px] text-center text-xl rounded-bl-lg rounded-br-lg font-light',
+                        )
+                      ],
+                      classes: 'flex flex-col justify-center items-center',
+                    ),
+                  ],
+                  classes: 'flex flex-row justify-center items-center',
+                ),
                 commonDivider(),
-                const Icon(Icons.powerSettingsNew),
+                div(
+                  [
+                    div(
+                      [
+                        span(
+                          [
+                            span(
+                              [
+                                text(
+                                  '76°',
+                                ),
+                              ],
+                              classes: 'text-white text-5xl font-light',
+                            ),
+                            text('/24°C'),
+                          ],
+                        ),
+                        span(
+                          [
+                            span(
+                              [
+                                const Icon(
+                                  Icons.sunnySnowing,
+                                  size: Unit.pixels(14),
+                                  colour: Colors.black,
+                                ),
+                                text('6:30AM'),
+                              ],
+                              classes:
+                                  'text-black mr-2 justify-center items-center bg-white p-2 rounded-3xl text-[12px] space-x-2 font-light',
+                            ),
+                            span(
+                              [
+                                const Icon(
+                                  Icons.sunnySnowing,
+                                  size: Unit.pixels(14),
+                                  colour: Colors.white,
+                                ),
+                                text('8:40PM'),
+                              ],
+                              classes:
+                                  'text-white mr-5 justify-center items-center bg-black p-2 rounded-3xl text-[12px] space-x-2 font-light',
+                            ),
+                          ],
+                        ),
+                      ],
+                      classes: 'flex flex-col justify-center items-center',
+                    ),
+                    span(
+                      [
+                        const Icon(Icons.wbSunny,
+                            colour: Colors.yellow, size: Unit.pixels(50)),
+                        text('Sunny'),
+                      ],
+                      classes:
+                          'flex flex-col justify-center items-center text-center text-[15px]',
+                    ),
+                  ],
+                  classes: 'flex flex-row justify-center items-center',
+                ),
                 commonDivider(),
                 ClockComponent(
                   builder: (context, dateTime) {
@@ -90,16 +230,6 @@ class HomeScreenState extends State<HomeScreen> {
               ],
               classes: 'flex flex-row justify-center items-center',
             ),
-            ClockComponent(builder: (context, dateTime) {
-              return div(
-                [
-                  div([text(dateTime.time)], classes: 'text-3xl font-bold'),
-                  div([text(dateTime.dayString)], classes: 'text-l font-bold'),
-                ],
-                classes:
-                    'text-white text-center flex flex-col justify-center h-full',
-              );
-            })
           ],
           classes:
               'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
