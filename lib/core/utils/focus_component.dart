@@ -7,9 +7,11 @@ class FocusComponent extends StatelessComponent {
   final Color focusedBorderColor;
   final int focusedBorderWidth;
   final BorderRadius borderRadius;
-  final void Function() onTap;
+  final void Function()? onTap;
   final String classes;
-
+  final void Function()? onFocus;
+  final void Function()? onBlur;
+  final void Function()? onKeyDown;
   const FocusComponent({
     super.key,
     required this.children,
@@ -18,14 +20,22 @@ class FocusComponent extends StatelessComponent {
     this.focusedBorderColor = Colors.white,
     this.focusedBorderWidth = 4,
     this.borderRadius = const BorderRadius.circular(Unit.pixels(20)),
-    required this.onTap,
+    this.onTap,
     this.classes = '',
+    this.onFocus,
+    this.onBlur,
+    this.onKeyDown,
   });
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
     yield div(
-      events: {'click': (event) => onTap.call()},
+      events: {
+        if (onTap != null) 'click': (event) => onTap!.call(),
+        if (onFocus != null) 'focus': (event) => onFocus!.call(),
+        if (onBlur != null) 'blur': (event) => onBlur!.call(),
+        if (onKeyDown != null) 'keydown': (event) => onKeyDown!.call(),
+      },
       [
         raw('''
           <style>

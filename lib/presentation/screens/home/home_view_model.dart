@@ -6,10 +6,6 @@ import '../../../data/models/modules_activation.dart';
 
 class HomeViewModel extends StateNotifier<String> {
   HomeViewModel() : super('');
-
-  void init() {
-    // Add your initialization logic here.
-  }
   final modelStream = ModelStream(
       databaseId: AppwriteClient.dbId,
       collectionId: AppwriteClient.moduleActivation,

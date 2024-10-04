@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:js_interop';
 
 import 'package:jaspr/jaspr.dart';
@@ -22,6 +23,44 @@ class HomeScreen extends StatefulComponent {
 
 class HomeScreenState extends State<HomeScreen> {
   final homeViewModel = HomeViewModel();
+  bool _isVisible = true;
+  Timer? _hideTimer;
+
+  @override
+  void initState() {
+    super.initState();
+    // Start a timer for 3 seconds after which the widget will slide out
+    Future.delayed(const Duration(seconds: 3), () {
+      setState(() {
+        _isVisible = false;
+      });
+    });
+    _startHideTimer();
+  }
+
+  void _startHideTimer() {
+    _hideTimer?.cancel(); // Cancel any existing timer
+    _hideTimer = Timer(const Duration(seconds: 5), () {
+      setState(() {
+        _isVisible = false; // Hide the content after 5 seconds
+      });
+    });
+  }
+
+  void _handleKeyDown() {
+    setState(() {
+      if (!_isVisible) {
+        _isVisible = true; // Show the content if it's hidden
+      }
+      _startHideTimer(); // Reset the timer
+    });
+  }
+
+  @override
+  void dispose() {
+    _hideTimer?.cancel();
+    super.dispose();
+  }
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
@@ -240,51 +279,97 @@ class HomeScreenState extends State<HomeScreen> {
             width: 750,
           ),
         ]),
-        StreamBuilder(
-          stream: homeViewModel.modelStream.stream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final List<ModulesActivationModel> data = snapshot.data!;
-              return [
-                div(
-                  [
-                    for (final item in data)
-                      if (item.enabled)
-                        FocusComponent(
-                          children: [
-                            Icon(switch (item.$id) {
-                              'account_information' => Icons.person,
-                              'live_tv' => Icons.tv,
-                              'video_on_demand' => Icons.ondemandVideo,
-                              'my_photos' => Icons.photoLibrary,
-                              'itinerary' => Icons.roomService,
-                              'explore' => Icons.star,
-                              'room_controls' => Icons.home,
-                              'guest_relations' => Icons.info,
-                              _ => Icons.error,
-                            }),
-                            text(item.title),
-                          ],
-                          borderRadius: const BorderRadius.circular(
-                            Unit.pixels(100),
-                          ),
-                          onTap: () {
-                            console.log('Tapped on ${item.title}'.toJS);
-                            Router.of(context).push(AppRoutes.vod);
-                          },
-                          classes:
-                              'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
-                        ),
-                  ],
-                  classes:
-                      'grid grid-cols-8 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-t-3xl',
-                )
-              ];
-            } else if (snapshot.hasError) {
-              return [text('Error: ${snapshot.error}')];
-            }
-            return [text('Loading...')];
+        div(
+          events: {
+            'focusin': (event) {
+              setState(() {
+                _isVisible = true;
+              });
+            },
+            'focusout': (event) {
+              setState(() {
+                _isVisible = false;
+              });
+            },
           },
+          attributes: {
+            'tabindex': '-1',
+          },
+          styles: const Styles.raw({
+            'outline': 'none',
+          }),
+          [
+            StreamBuilder(
+              stream: homeViewModel.modelStream.stream,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final List<ModulesActivationModel> data = snapshot.data!;
+                  return [
+                    div(
+                      [
+                        div(
+                          [
+                            for (final item in data)
+                              if (item.enabled)
+                                FocusComponent(
+                                  children: [
+                                    Icon(switch (item.$id) {
+                                      'account_information' => Icons.person,
+                                      'live_tv' => Icons.tv,
+                                      'video_on_demand' => Icons.ondemandVideo,
+                                      'my_photos' => Icons.photoLibrary,
+                                      'itinerary' => Icons.roomService,
+                                      'explore' => Icons.star,
+                                      'room_controls' => Icons.home,
+                                      'guest_relations' => Icons.info,
+                                      _ => Icons.error,
+                                    }),
+                                    text(item.title),
+                                  ],
+                                  borderRadius: const BorderRadius.circular(
+                                    Unit.pixels(20),
+                                  ),
+                                  onTap: () {
+                                    console.log('Tapped on ${item.title}'.toJS);
+                                    Router.of(context).push(AppRoutes.vod);
+                                  },
+                                  onKeyDown: _handleKeyDown, // Add this line
+                                  classes:
+                                      'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
+                                ),
+                          ],
+                          // Apply the transform to this div
+                          styles: Styles.raw({
+                            'transition': 'transform 1s ease-in-out',
+                            'transform': _isVisible
+                                ? 'translateY(0)'
+                                : 'translateY(80%)',
+                          }),
+                          classes: [
+                            'grid',
+                            'grid-cols-8',
+                            'gap-2',
+                            'p-2',
+                            'bg-black',
+                            'bg-opacity-50',
+                            'text-white',
+                            'rounded-t-3xl',
+                            'pb-4'
+                          ].join(' '),
+                        ),
+                      ],
+                      styles: const Styles.raw({
+                        'overflow': 'hidden',
+                      }),
+                    ),
+                  ];
+                } else if (snapshot.hasError) {
+                  return [text('Error: ${snapshot.error}')];
+                }
+                return [text('Loading...')];
+              },
+            ),
+          ],
         ),
       ],
       classes: 'flex flex-col justify-between h-screen',

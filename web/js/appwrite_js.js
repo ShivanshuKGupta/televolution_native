@@ -3,7 +3,7 @@ const subscribedChannels = [];
 const Appwrite = window.Appwrite;
 const client = new Appwrite.Client();
 
-client.setEndpoint('https://8pn0zq4z-80.use2.devtunnels.ms/v1').setProject('projectx');
+client.setEndpoint('https://7xwrgbhq-80.inc1.devtunnels.ms/v1').setProject('televolution');
 
 let unsubscribe;
 

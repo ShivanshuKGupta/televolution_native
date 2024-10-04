@@ -127,3 +127,22 @@ header nav div.active::before {
 ol {
   max-width: 500px;
 }
+
+@keyframes slideOutBottom {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.slide-out-bottom {
+  animation: slideOutBottom 1s forwards;
+}
+
+.invisible {
+  display: none;
+}
