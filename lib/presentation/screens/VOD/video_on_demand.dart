@@ -4,14 +4,17 @@ import 'package:jaspr_router/jaspr_router.dart';
 import '../../../app/routes.dart';
 import '../../../core/utils/focus_component.dart';
 import '../../../data/models/movie/movie.dart';
-import 'video_on_demand_model.dart';
 
-class VideoOnDemand extends StatelessComponent {
+class VideoOnDemand extends StatefulComponent {
   const VideoOnDemand({super.key});
+  @override
+  State<StatefulComponent> createState() => VideoOnDemandState();
+}
 
+class VideoOnDemandState extends State<VideoOnDemand> {
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    final videoOnDemandModel = VideoOnDemandModel();
+    final int numColumns = 7;
 
     yield div(
       [
@@ -24,26 +27,22 @@ class VideoOnDemand extends StatelessComponent {
                     div(
                       [
                         h2([text(movie.title)],
-                            classes: 'text-white text-lg font-bold'),
+                            classes: 'text-white text-l font-bold'),
                       ],
                       classes:
                           'absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center',
                     ),
                   ],
-                  classes:
-                      'relative rounded-40 overflow-hidden bg-cover bg-center h-64',
-                  styles: Styles.combine(
-                    [
-                      const Styles.box(
-                        radius: BorderRadius.circular(Unit.pixels(20)),
-                      ),
-                      Styles.background(
-                        image: ImageStyle.url(movie.image),
-                      ),
-                    ],
+                  styles: Styles.background(
+                    image: ImageStyle.url(movie.image),
+                    size: BackgroundSize.cover,
                   ),
+                  classes:
+                      'relative rounded-40 overflow-hidden bg-center h-40 w-45 rounded-[20px]',
                 ),
               ],
+              classes:
+                  'hover:shadow-xl transition-all duration-200 ease-in-out',
               onTap: () {
                 Router.of(context).push(
                   AppRoutes.hls,
@@ -55,12 +54,22 @@ class VideoOnDemand extends StatelessComponent {
         ),
       ],
       styles: Styles.grid(
-          gap: const GridGap.all(Unit.pixels(2)),
-          template: GridTemplate(
-              columns: GridTracks([
-            for (var i = 0; i < videoOnDemandModel.numColumns; i++)
-              const GridTrack(TrackSize.fr(1)),
-          ]))),
+        template: GridTemplate(
+            columns: GridTracks(
+              [
+                for (var i = 0;
+                    i < numColumns;
+                    i++) // Set to a fixed number of columns
+                  const GridTrack(TrackSize.fr(1)),
+              ],
+            ),
+            areas: GridAreas(
+              [
+                for (var i = 0; i < Movie.allMovies.length; i++) 'movie$i',
+              ],
+            )),
+      ),
+      classes: 'min-h-screen p-20 flex flex-col content-center align-justify justify-center items-center',
     );
   }
 }

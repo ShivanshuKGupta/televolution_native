@@ -107,5 +107,89 @@ class Movie {
       genre: [Genre.comedy, Genre.animation],
       createdAt: DateTime(2008, 4, 10),
     ),
+    Movie(
+      streamUrl:
+          'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',
+      title: '10',
+      description: '',
+      image:
+          'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRsecqDOr1OstfK2xWreNH1JkJry7S0eLVuVklAEzkogjBxNQlp',
+      duration: const Duration(hours: 1, minutes: 5),
+      rating: 9.3,
+      genre: [Genre.comedy, Genre.animation],
+      createdAt: DateTime(2008, 4, 10),
+    ),
+    Movie(
+      streamUrl:
+          'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',
+      title: '10',
+      description: '',
+      image:
+          'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRsecqDOr1OstfK2xWreNH1JkJry7S0eLVuVklAEzkogjBxNQlp',
+      duration: const Duration(hours: 1, minutes: 5),
+      rating: 9.3,
+      genre: [Genre.comedy, Genre.animation],
+      createdAt: DateTime(2008, 4, 10),
+    ),
+    Movie(
+      streamUrl:
+          'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',
+      title: '10',
+      description: '',
+      image:
+          'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRsecqDOr1OstfK2xWreNH1JkJry7S0eLVuVklAEzkogjBxNQlp',
+      duration: const Duration(hours: 1, minutes: 5),
+      rating: 9.3,
+      genre: [Genre.comedy, Genre.animation],
+      createdAt: DateTime(2008, 4, 10),
+    ),
+    Movie(
+      streamUrl:
+          'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',
+      title: '10',
+      description: '',
+      image:
+          'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRsecqDOr1OstfK2xWreNH1JkJry7S0eLVuVklAEzkogjBxNQlp',
+      duration: const Duration(hours: 1, minutes: 5),
+      rating: 9.3,
+      genre: [Genre.comedy, Genre.animation],
+      createdAt: DateTime(2008, 4, 10),
+    ),
+    Movie(
+      streamUrl:
+          'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',
+      title: '10',
+      description: '',
+      image:
+          'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRsecqDOr1OstfK2xWreNH1JkJry7S0eLVuVklAEzkogjBxNQlp',
+      duration: const Duration(hours: 1, minutes: 5),
+      rating: 9.3,
+      genre: [Genre.comedy, Genre.animation],
+      createdAt: DateTime(2008, 4, 10),
+    ),
+    Movie(
+      streamUrl:
+          'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',
+      title: '10',
+      description: '',
+      image:
+          'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRsecqDOr1OstfK2xWreNH1JkJry7S0eLVuVklAEzkogjBxNQlp',
+      duration: const Duration(hours: 1, minutes: 5),
+      rating: 9.3,
+      genre: [Genre.comedy, Genre.animation],
+      createdAt: DateTime(2008, 4, 10),
+    ),
+    Movie(
+      streamUrl:
+          'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',
+      title: '10',
+      description: '',
+      image:
+          'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRsecqDOr1OstfK2xWreNH1JkJry7S0eLVuVklAEzkogjBxNQlp',
+      duration: const Duration(hours: 1, minutes: 5),
+      rating: 9.3,
+      genre: [Genre.comedy, Genre.animation],
+      createdAt: DateTime(2008, 4, 10),
+    ),
   ];
 }
