@@ -60,6 +60,11 @@ function handleArrowNavigation(event) {
     }
 
     const currentElement = document.activeElement;
+    if (!currentElement || currentElement.tagName === 'BODY' || !currentElement.classList.contains('focusable')) {
+        let bttn = document.querySelector('.focusable');
+        if (bttn) bttn.focus();
+        return;
+    }
 
     switch (event.key) {
         case 'ArrowDown':
