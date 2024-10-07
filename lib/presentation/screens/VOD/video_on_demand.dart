@@ -18,37 +18,53 @@ class VideoOnDemandState extends State<VideoOnDemand> {
 
     yield div(
       [
+        raw('''
+          <style>
+            .focus-zoom {
+              transition: transform 0.3s ease-in-out;
+            }
+            .focus-zoom:focus-within,
+            .focus-zoom:hover {
+              transform: scale(1.1);
+            }
+          </style>
+        '''),
         ...Movie.allMovies.map(
           (movie) {
-            return FocusComponent(
-              children: [
-                div(
-                  [
+            return div(
+              [
+                FocusComponent(
+                  children: [
                     div(
                       [
-                        h2([text(movie.title)],
-                            classes: 'text-white text-l font-bold'),
+                        div(
+                          [
+                            h2([text(movie.title)],
+                                classes: 'text-white text-sm font-bold'),
+                          ],
+                          classes:
+                              'absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center',
+                        ),
                       ],
+                      styles: Styles.background(
+                        image: ImageStyle.url(movie.image),
+                        size: BackgroundSize.cover,
+                      ),
                       classes:
-                          'absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center',
+                          'relative rounded-40 overflow-hidden bg-center h-40 w-45 rounded-[20px]',
                     ),
                   ],
-                  styles: Styles.background(
-                    image: ImageStyle.url(movie.image),
-                    size: BackgroundSize.cover,
-                  ),
-                  classes:
-                      'relative rounded-40 overflow-hidden bg-center h-40 w-45 rounded-[20px]',
+                  classes: 'duration-200 ease-in-out mr-2',
+                  onTap: () {
+                    Router.of(context).push(
+                      AppRoutes.hls,
+                      extra: movie.streamUrl,
+                    );
+                  },
                 ),
               ],
               classes:
-                  'hover:shadow-xl transition-all duration-200 ease-in-out',
-              onTap: () {
-                Router.of(context).push(
-                  AppRoutes.hls,
-                  extra: movie.streamUrl,
-                );
-              },
+                  'focus-zoom mr-2 mb-4', // Adding focus-zoom class for zoom effect
             );
           },
         ),
@@ -69,7 +85,8 @@ class VideoOnDemandState extends State<VideoOnDemand> {
               ],
             )),
       ),
-      classes: 'min-h-screen p-20 flex flex-col content-center align-justify justify-center items-center',
+      classes:
+          'min-h-screen p-20 content-center justify-between',
     );
   }
 }
