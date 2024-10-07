@@ -1,7 +1,6 @@
-import 'dart:async';
 import 'dart:js_interop';
 
-import 'package:jaspr/jaspr.dart';
+import 'package:jaspr/jaspr.dart' hide Element;
 import 'package:jaspr_material/jaspr_material.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:web/web.dart';
@@ -23,43 +22,16 @@ class HomeScreen extends StatefulComponent {
 
 class HomeScreenState extends State<HomeScreen> {
   final homeViewModel = HomeViewModel();
-  bool _isVisible = true;
-  Timer? _hideTimer;
 
-  @override
-  void initState() {
-    super.initState();
-    // Start a timer for 3 seconds after which the widget will slide out
-    Future.delayed(const Duration(seconds: 3), () {
-      setState(() {
-        _isVisible = false;
-      });
-    });
-    _startHideTimer();
+  Element? get slideDiv => document.getElementById('slideDiv');
+  bool get isSlideUp => slideDiv?.classList.contains('active') ?? false;
+
+  void slideUp() {
+    if (!isSlideUp) slideDiv?.classList.toggle('active');
   }
 
-  void _startHideTimer() {
-    _hideTimer?.cancel(); // Cancel any existing timer
-    _hideTimer = Timer(const Duration(seconds: 5), () {
-      setState(() {
-        _isVisible = false; // Hide the content after 5 seconds
-      });
-    });
-  }
-
-  void _handleKeyDown() {
-    setState(() {
-      if (!_isVisible) {
-        _isVisible = true; // Show the content if it's hidden
-      }
-      _startHideTimer(); // Reset the timer
-    });
-  }
-
-  @override
-  void dispose() {
-    _hideTimer?.cancel();
-    super.dispose();
+  void slideDown() {
+    if (isSlideUp) slideDiv?.classList.toggle('active');
   }
 
   @override
@@ -92,6 +64,7 @@ class HomeScreenState extends State<HomeScreen> {
 
     yield div(
       [
+        /// Appbar
         div(
           [
             div([
@@ -106,18 +79,14 @@ class HomeScreenState extends State<HomeScreen> {
               [
                 FocusComponent(
                   children: [
-                    const Icon(
-                      Icons.message,
-                    ),
+                    const Icon(Icons.mail, size: Unit.pixels(50)),
                   ],
                   onTap: () {},
                 ),
                 commonDivider(),
                 FocusComponent(
                   children: [
-                    const Icon(
-                      Icons.security,
-                    ),
+                    const Icon(Icons.healthAndSafety, size: Unit.pixels(50)),
                   ],
                   onTap: () {},
                 ),
@@ -273,103 +242,83 @@ class HomeScreenState extends State<HomeScreen> {
           classes:
               'bg-black bg-opacity-50 text-white p-4 flex flex-row justify-between',
         ),
-        div([
-          img(
-            src: 'https://mytvpocroyal.com/uploads/ship.png',
-            width: 750,
-          ),
-        ]),
-        div(
-          events: {
-            'focusin': (event) {
-              setState(() {
-                _isVisible = true;
-              });
-            },
-            'focusout': (event) {
-              setState(() {
-                _isVisible = false;
-              });
-            },
+
+        /// Ship
+        img(
+          src: 'https://mytvpocroyal.com/uploads/ship.png',
+          width: 750,
+        ),
+
+        /// Bottom Navigation Menu
+        StreamBuilder(
+          stream: homeViewModel.modelStream.stream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final List<ModulesActivationModel> data = snapshot.data!;
+              return [
+                raw('''
+<style>
+#slideDiv {
+    position: fixed;
+    bottom: -100px; /* Start off screen */
+    left: 0;
+    width: 100%;
+    transition: bottom 0.5s ease;
+}
+
+/* When active, slide up the div */
+#slideDiv.active {
+    bottom: 0;
+}
+</style>
+'''),
+                div(
+                    [
+                      for (final item in data)
+                        if (item.enabled)
+                          FocusComponent(
+                            children: [
+                              Icon(switch (item.$id) {
+                                'account_information' => Icons.person,
+                                'live_tv' => Icons.tv,
+                                'video_on_demand' => Icons.ondemandVideo,
+                                'my_photos' => Icons.photoLibrary,
+                                'itinerary' => Icons.roomService,
+                                'explore' => Icons.star,
+                                'room_controls' => Icons.home,
+                                'guest_relations' => Icons.info,
+                                _ => Icons.error,
+                              }),
+                              text(item.title),
+                            ],
+                            borderRadius: const BorderRadius.circular(
+                              Unit.pixels(20),
+                            ),
+                            onTap: () {
+                              console.log('Tapped on ${item.title}'.toJS);
+                              Router.of(context).push(AppRoutes.vod);
+                            },
+                            classes:
+                                'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
+                          ),
+                    ],
+                    id: 'slideDiv',
+                    classes:
+                        'grid grid-cols-8 gap-2 p-2 bg-black bg-opacity-50 text-white rounded-t-3xl pb-4',
+                    events: {
+                      'focusin': (event) {
+                        slideUp();
+                      },
+                      'focusout': (event) {
+                        slideDown();
+                      },
+                    })
+              ];
+            } else if (snapshot.hasError) {
+              return [text('Error: ${snapshot.error}')];
+            }
+            return [text('Loading...')];
           },
-          attributes: {
-            'tabindex': '-1',
-          },
-          styles: const Styles.raw({
-            'outline': 'none',
-          }),
-          [
-            StreamBuilder(
-              stream: homeViewModel.modelStream.stream,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final List<ModulesActivationModel> data = snapshot.data!;
-                  return [
-                    div(
-                      [
-                        div(
-                          [
-                            for (final item in data)
-                              if (item.enabled)
-                                FocusComponent(
-                                  children: [
-                                    Icon(switch (item.$id) {
-                                      'account_information' => Icons.person,
-                                      'live_tv' => Icons.tv,
-                                      'video_on_demand' => Icons.ondemandVideo,
-                                      'my_photos' => Icons.photoLibrary,
-                                      'itinerary' => Icons.roomService,
-                                      'explore' => Icons.star,
-                                      'room_controls' => Icons.home,
-                                      'guest_relations' => Icons.info,
-                                      _ => Icons.error,
-                                    }),
-                                    text(item.title),
-                                  ],
-                                  borderRadius: const BorderRadius.circular(
-                                    Unit.pixels(20),
-                                  ),
-                                  onTap: () {
-                                    console.log('Tapped on ${item.title}'.toJS);
-                                    Router.of(context).push(AppRoutes.vod);
-                                  },
-                                  onKeyDown: _handleKeyDown, // Add this line
-                                  classes:
-                                      'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',
-                                ),
-                          ],
-                          // Apply the transform to this div
-                          styles: Styles.raw({
-                            'transition': 'transform 1s ease-in-out',
-                            'transform': _isVisible
-                                ? 'translateY(0)'
-                                : 'translateY(80%)',
-                          }),
-                          classes: [
-                            'grid',
-                            'grid-cols-8',
-                            'gap-2',
-                            'p-2',
-                            'bg-black',
-                            'bg-opacity-50',
-                            'text-white',
-                            'rounded-t-3xl',
-                            'pb-4'
-                          ].join(' '),
-                        ),
-                      ],
-                      styles: const Styles.raw({
-                        'overflow': 'hidden',
-                      }),
-                    ),
-                  ];
-                } else if (snapshot.hasError) {
-                  return [text('Error: ${snapshot.error}')];
-                }
-                return [text('Loading...')];
-              },
-            ),
-          ],
         ),
       ],
       classes: 'flex flex-col justify-between h-screen',

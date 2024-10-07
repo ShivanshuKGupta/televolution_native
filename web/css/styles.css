@@ -133,6 +133,7 @@ ol {
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(100%);
     opacity: 0;
@@ -145,4 +146,15 @@ ol {
 
 .invisible {
   display: none;
+}
+
+.noselect {
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Standard syntax */
 }

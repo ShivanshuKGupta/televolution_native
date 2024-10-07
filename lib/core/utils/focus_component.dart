@@ -54,7 +54,7 @@ class FocusComponent extends StatelessComponent {
         ...children,
       ],
       classes:
-          'focusable cursor-pointer font-bold hover:bg-opacity-20 hover:bg-white hover:shadow-xl active:bg-blue-700 active:scale-95 transition-all duration-200 ease-in-out $classes',
+          'focusable noselect cursor-pointer font-bold hover:bg-opacity-20 hover:bg-white hover:shadow-xl active:bg-blue-700 active:scale-95 transition-all duration-200 ease-in-out $classes',
       attributes: {
         'tabindex': tabIndex.toString(),
         'z-index': '10',
