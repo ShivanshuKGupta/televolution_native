@@ -244,9 +244,14 @@ class HomeScreenState extends State<HomeScreen> {
         ),
 
         /// Ship
-        img(
-          src: 'https://mytvpocroyal.com/uploads/ship.png',
-          width: 750,
+        div(
+          [
+            img(
+              src: 'https://mytvpocroyal.com/uploads/ship.png',
+              width: 750,
+            ),
+          ],
+          classes: 'flex-grow flex items-center justify-start',
         ),
 
         /// Bottom Navigation Menu
