@@ -24,19 +24,13 @@ function findClosestElement(current, direction) {
         let valid = false;
 
         // Check if the element is in the correct direction
-        let centerX = (rect.left + rect.right) / 2;
-        let centerY = (rect.top + rect.bottom) / 2;
-
-        let currentCenterX = (currentRect.left + currentRect.right) / 2;
-        let currentCenterY = (currentRect.top + currentRect.bottom) / 2;
-
-        if (direction === 'ArrowRight' && centerX > currentCenterX) {
+        if (direction === 'ArrowRight' && rect.left >= currentRect.right) {
             valid = true;
-        } else if (direction === 'ArrowLeft' && centerX < currentCenterX) {
+        } else if (direction === 'ArrowLeft' && rect.right <= currentRect.left) {
             valid = true;
-        } else if (direction === 'ArrowUp' && centerY < currentCenterY) {
+        } else if (direction === 'ArrowUp' && rect.bottom <= currentRect.top) {
             valid = true;
-        } else if (direction === 'ArrowDown' && centerY > currentCenterY) {
+        } else if (direction === 'ArrowDown' && rect.top >= currentRect.bottom) {
             valid = true;
         }
 
