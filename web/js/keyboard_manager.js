@@ -11,6 +11,11 @@ function getDistance(el1, el2) {
 
 // Finds the closest element in a specific direction
 function findClosestElement(current, direction) {
+    if (!current || current.tagName === 'BODY' || !current.classList.contains('focusable')) {
+        let bttn = document.querySelector('.focusable');
+        return bttn;
+    }
+
     const focusableElements = Array.from(document.querySelectorAll('.focusable'));
     const currentRect = current.getBoundingClientRect();
 
@@ -60,11 +65,6 @@ function handleArrowNavigation(event) {
     }
 
     const currentElement = document.activeElement;
-    if (!currentElement || currentElement.tagName === 'BODY' || !currentElement.classList.contains('focusable')) {
-        let bttn = document.querySelector('.focusable');
-        if (bttn) bttn.focus();
-        return;
-    }
 
     switch (event.key) {
         case 'ArrowDown':
@@ -124,13 +124,6 @@ function showPopup(message) {
     setTimeout(() => {
         document.body.removeChild(popup);
     }, 3000);
-
-    const currentElement = document.activeElement;
-    if (!currentElement || !currentElement.classList.contains('focusable')) {
-        let bttn = document.querySelector('.focusable');
-        if (bttn) bttn.focus();
-        return;
-    }
 }
 
 const keysToToggle = 1200;
