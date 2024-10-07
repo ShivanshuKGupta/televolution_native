@@ -27,6 +27,9 @@ class VideoOnDemandState extends State<VideoOnDemand> {
             .focus-zoom:hover {
               transform: scale(1.1);
             }
+            .focus-zoom:focus-within h2 {
+              font-size: 20px !important; 
+              transition: font-size 0.3s ease-in-out;
           </style>
         '''),
         ...Movie.allMovies.map(

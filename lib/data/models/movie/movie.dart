@@ -62,7 +62,7 @@ class Movie {
     ),
     Movie(
       streamUrl: 'https://rtmp.api.rt.com/hls/rtdru.m3u8',
-      title: 'RT Documentary Channel Live Online',
+      title: 'RT Documentary',
       description: '',
       image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ39t7b-mL4Xg-DSJueQPCb_fOsJswngVr0yjMc6qoVuqACzS2',
@@ -74,7 +74,7 @@ class Movie {
     Movie(
       streamUrl:
           'https://bitcdn-kronehit.bitmovin.com/v2/hls/chunklist_b3128000.m3u8',
-      title: 'Kronehit TV - LyngSat Stream',
+      title: 'Kronehit TV',
       description: '',
       image:
           'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRsecqDOr1OstfK2xWreNH1JkJry7S0eLVuVklAEzkogjBxNQlp',
