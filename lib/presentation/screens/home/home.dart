@@ -301,7 +301,11 @@ class HomeScreenState extends State<HomeScreen> {
                             ),
                             onTap: () {
                               console.log('Tapped on ${item.title}'.toJS);
-                              Router.of(context).push(AppRoutes.vod);
+                              if (item.$id == 'live_tv') {
+                                Router.of(context).push(AppRoutes.liveTV);
+                              } else if (item.$id == 'video_on_demand') {
+                                Router.of(context).push(AppRoutes.vod);
+                              }
                             },
                             classes:
                                 'pt-4 pb-4 flex flex-col items-center whitespace-nowrap',

@@ -17,7 +17,7 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Iterable<Component> build(BuildContext context) sync* {
     // yield const BubbleAnimation();
-   yield video(
+    yield video(
       [],
       controls: false,
       autoplay: true,
@@ -52,7 +52,7 @@ class SplashScreenState extends State<SplashScreen> {
       //     color: Colors.black,
       //   ),
       // ]),
-      classes: 'bg-black h-screen w-screen relative overflow-hidden',
+      classes: 'bg-black h-screen w-screen relative',
     );
 
     yield section(
@@ -176,7 +176,7 @@ class SplashScreenState extends State<SplashScreen> {
       //     ),
       //   ],
       // ),
-      classes: 'text-white',
+      classes: 'text-white bg-black bg-opacity-50 text-white',
     );
   }
 }

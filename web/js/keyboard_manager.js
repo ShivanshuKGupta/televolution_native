@@ -79,6 +79,9 @@ function handleArrowNavigation(event) {
         case 'Backspace':
             window.history.back();
             break;
+        case 'Escape':
+            window.history.back();
+            break;
         case '461':
             window.history.back();
             break;

@@ -1,6 +1,7 @@
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../presentation/screens/home/home.dart';
+import '../presentation/screens/live_tv/live_tv.dart';
 import '../presentation/screens/splash/splash.dart';
 import '../presentation/screens/vod/hls_video_player.dart';
 import '../presentation/screens/vod/video_on_demand.dart';
@@ -21,6 +22,11 @@ final appRoutes = [
     path: AppRoutes.vod,
     title: 'Video On Demand',
     builder: (context, state) => const VideoOnDemand(),
+  ),
+  Route(
+    path: AppRoutes.liveTV,
+    title: 'Live TV',
+    builder: (context, state) => const LiveTv(),
   ),
   Route(
     path: AppRoutes.hls,

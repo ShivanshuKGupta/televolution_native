@@ -86,7 +86,7 @@ class MenuState extends State<Menu> {
                 // ),
                 classes: 'flex justify-center items-center flex-row flex-wrap')
           ],
-          classes: 'bg-black bg-opacity-20 rounded-[20px]',
+          classes: 'rounded-[20px]',
         );
       },
     );
