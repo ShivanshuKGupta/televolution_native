@@ -305,6 +305,8 @@ class HomeScreenState extends State<HomeScreen> {
                                 Router.of(context).push(AppRoutes.liveTV);
                               } else if (item.$id == 'video_on_demand') {
                                 Router.of(context).push(AppRoutes.vod);
+                              } else {
+                                Router.of(context).push(AppRoutes.vod);
                               }
                             },
                             classes:
